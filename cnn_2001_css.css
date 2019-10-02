@@ -6,7 +6,7 @@
     }
 	
 	body{
-		background-image: url('https://lh3.googleusercontent.com/L7oWqjwNJTonbjeUDfvF3j8FD2SGH3an714N78U_XA5QYa_nweGaAiuKktBzVGnoz075VqBAosWnw29-KTR4LRTQL19Vq7oys1mlLwBU8Y2BFt3rctcxSHBVeQfRH9TWWqf79hXbizeiK1ngsdqMgiewQVrMhk-nALEkP68CASpB_lqTyvNPhjL1mIsopUhAsqa9o24HKsRjn0zODgCBokNXZ9N0kl4ZN2_Zi4NMd638WOW6yr3DhuwYIC0l2V0-SvHDGZRdMiiLJ3N-Awu3ZnZM5XfWL0oqd0aNije-RCovWpVcQotX6tWtcp-ZPqjDhSKFZaidITRR3OPAdrkM9nsp6G0ZpFDK5vO1Bn-NLNgcxdjfL7OtpT2fFmzvk5aj1W6VkuXLzqPJAPKacx0wZU-mRTeDhfj8thu24yF_gyTtbU4SP70ub8uEP9McsoTfIBDtCEiUnEp3j2NzHOyDpNAdcRjYTo02MCpAzVdF_tWRaXW_2vtU6Y4euV8QjqtUN8o8OgMcywbhG9aBV0uMGiD1kxd59h-COCrA2LsML0b2XcBwLqtFOdU2eT-Jok2qBRyW7L_DKiOs0jtNmGyMGdTSNId20xrk811Ibyqs9DL9vSFJwmkssAfHgKwwmhcaxsx8X8R8VMFlz_P5uyyS5276Pt-t1FSOGz1wkT9Zo7auCoht682Ue3YAQU6GDQtDq2MSlnMlz6JfqJJDlnAi1bc6mYVcV7KaUt55tcinEoyVXmGYtg=w103-h937-no');
+		background-image: url('cnngrad.jpg');
 		}
 		
 	header{
@@ -14,7 +14,7 @@
 		position: absolute;
 		top:0px;
 		left: 0px;
-		z-index:10101010;
+		z-index:1;
 	}
 	
 	#section {
