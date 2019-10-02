@@ -1,0 +1,254 @@
+<style>
+
+    #section {
+        display: grid;
+        grid-template-columns: 40% 40% 20%;
+    }
+	
+	body{
+		background-image: url('cnngrad.jpg');
+		}
+		
+	header{
+		display:floating;
+		position: fixed;
+		top:0px;
+		left: 0px;
+	}
+	
+	#section {
+        display: grid;
+        grid-template-columns: 40% 40% 20%;
+		width:757;
+		position: absolute;
+		top:132px;
+    }
+	
+	#col1{
+		width:285;
+	}
+	
+	.para{
+		font-family: arial;
+		font-size: 14px;
+		color: #FFFFFF;
+	}
+	
+	#fullstory{
+		font-family: arial;
+		font-size: 14px;
+		color: #FFCC33;
+	}
+	
+	ul{    
+		font-family: arial;
+		font-size: 12px;
+		padding-inline-start: 16px;
+		list-style-image: url('http://www.cnn.com/SPECIALS/2001/year.in.review/images/link.arrow.gif')
+	}
+	
+	.drpcontent {
+		display: none;
+		position: absolute;
+		top: 18px;
+		background-color: white;
+		min-width: 160px;
+		max-height: 800px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		left:-10;
+		text-decoration:none;
+		overflow: scroll;
+	}
+	#test1:hover{
+	background-color: lightblue;}
+	#test2:hover{
+	background-color: lightblue;}
+	#test3:hover{
+	background-color: lightblue;}
+	#test4:hover{
+	background-color: lightblue;}
+	#test5:hover{
+	background-color: lightblue;}
+	#test6:hover{
+	background-color: lightblue;}
+	#test7:hover{
+	background-color: lightblue;}
+	#test8:hover{
+	background-color: lightblue;}
+	#test9:hover{
+	background-color: lightblue;}
+	#test10:hover{
+	background-color: lightblue;}
+	#test11:hover{
+	background-color: lightblue;}
+	#test12:hover{
+	background-color: lightblue;}
+	#test13:hover{
+	background-color: lightblue;}
+	#test14:hover{
+	background-color: lightblue;}
+	#test15:hover{
+	background-color: lightblue;}
+	#test16:hover{
+	background-color: lightblue;}
+	#test17:hover{
+	background-color: lightblue;}
+	#test18:hover{
+	background-color: lightblue;}
+	#test19:hover{
+	background-color: lightblue;}
+	#test20:hover{
+	background-color: lightblue;}
+	#test21:hover{
+	background-color: lightblue;}
+	#test22:hover{
+	background-color: lightblue;}
+	#test23:hover{
+	background-color: lightblue;}
+	#test24:hover{
+	background-color: lightblue;}
+	#test25:hover{
+	background-color: lightblue;}
+	#test26:hover{
+	background-color: lightblue;}
+	#test27:hover{
+	background-color: lightblue;}
+	#test28:hover{
+	background-color: lightblue;}
+	#test29:hover{
+	background-color: lightblue;}
+	#test30:hover{
+	background-color: lightblue;}
+	#test31:hover{
+	background-color: lightblue;}
+	#test32:hover{
+	background-color: lightblue;}
+	#test33:hover{
+	background-color: lightblue;}
+	#test34:hover{
+	background-color: lightblue;}
+	#test35:hover{
+	background-color: lightblue;}
+	#test36:hover{
+	background-color: lightblue;}
+	#test37:hover{
+	background-color: lightblue;}
+	#test38:hover{
+	background-color: lightblue;}
+	#test39:hover{
+	background-color: lightblue;}
+	
+	.dropdown {
+		position: absolute;
+		top: 107px;
+		left:295px;
+		display: inline-block;
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		font-size: 10px;
+		float: left;
+		z-index:1;
+	}
+	.dropdown2{
+		position: absolute;
+		top: 107px;
+		left:480px;
+		display: inline-block;
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		font-size: 10px;
+		float: left;
+		z-index:1;
+	}
+	.dropbtn {
+		position: relative;
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		font-size: 10px;
+		width:170px;
+		left:-10;
+		text-align:left;
+	}
+	.dropbtn2 {
+		position: relative;
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		font-size: 10px;
+		width:120px;
+		left:-10;
+		text-align:left;
+	}
+	
+	.dropdown2:hover .drpcontent {
+		display: block;
+	}
+
+	.dropdown:hover .drpcontent {
+		display: block;
+	}
+		
+	li{
+		margin:0 0 9px 0;
+	}
+	.dgaf li{
+		margin:0 0 0px 0;
+	}
+		
+	a{    
+		color: #FFCC33;
+		}
+		
+	a:hover{
+		text-decoration:none;
+	}
+	
+	.black{
+		text-decoration:none;
+		background-color:black;
+		height:1;
+		width:100;
+		margin:3px;
+	}
+	
+	#footy{
+		text-align:center;
+	}
+	
+	.dgaf{
+		position:absolute;
+		top:7px;
+		left: 615px;
+		list-style-image: url(http://www.cnn.com/SPECIALS/2001/year.in.review/images/navbar/nav.arrow.off.gif);
+	}
+	
+	.neverunder{
+		text-decoration:none;
+	}
+	
+	#selected{
+		list-style-image: url(http://www.cnn.com/SPECIALS/2001/year.in.review/images/navbar/nav.arrow.on.gif);
+		color:white;}
+	#one:hover{
+		list-style-image: url(http://www.cnn.com/SPECIALS/2001/year.in.review/images/navbar/nav.arrow.on.gif);}
+	#two:hover{
+		list-style-image: url(http://www.cnn.com/SPECIALS/2001/year.in.review/images/navbar/nav.arrow.on.gif);}
+	#three:hover{
+		list-style-image: url(http://www.cnn.com/SPECIALS/2001/year.in.review/images/navbar/nav.arrow.on.gif);}
+	#four:hover{
+		list-style-image: url(http://www.cnn.com/SPECIALS/2001/year.in.review/images/navbar/nav.arrow.on.gif);}
+	#five:hover{
+		list-style-image: url(http://www.cnn.com/SPECIALS/2001/year.in.review/images/navbar/nav.arrow.on.gif);}
+	#six:hover{
+		list-style-image: url(http://www.cnn.com/SPECIALS/2001/year.in.review/images/navbar/nav.arrow.on.gif);}
+	
+	.normal{
+		color: #000099;}
+	.blacklink{
+		color: black;
+		text-decoration:none;
+		margin-bottom: 10px;}
+	
+	footer {
+		position: fixed;	
+		top: 85%;
+		left: 15%;
+		font-family: Verdana, HELVETICA, ARIAL, sans-serif;
+		font-size:x-small;
+         }
+</style>
