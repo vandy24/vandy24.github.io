@@ -11,9 +11,10 @@
 		
 	header{
 		display:floating;
-		position: fixed;
+		position: absolute;
 		top:0px;
 		left: 0px;
+		z-index:10101010;
 	}
 	
 	#section {
@@ -245,9 +246,9 @@
 		margin-bottom: 10px;}
 	
 	footer {
-		position: fixed;	
-		top: 85%;
-		left: 15%;
+		position: absolute;	
+		top: 800px;
+		left: 250px;
 		font-family: Verdana, HELVETICA, ARIAL, sans-serif;
 		font-size:x-small;
          }
