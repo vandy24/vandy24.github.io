@@ -8,6 +8,14 @@ try{
 	var max_pass = document.querySelector("#max");
 	var eztype = document.querySelector("#easytype");
 	var numsubs = document.querySelector("#numbersubs");
+	if(max_pass.value<10){
+		console.log(max_pass.value<10);
+		alert("Error: The maximum password length must be at least 10");
+		return;}
+	if(max_pass.value<15 && eztype.checked){
+		console.log(max_pass.value<15);
+		alert("Error: The maximum password length must be at least 15 when easytype is checked. (Easy type works by only allowing words with double letters. These words tend to be longer, so to ensure a four word password, this is required).");
+		return;}
 	var possible=[];
 	var result_list=[];
 	for(var i=0; i<1000; i++){
@@ -22,7 +30,6 @@ try{
 					counts[words[i][index]]= count ? count + 1 : 1;
 				}
 				for(var key in counts){
-					
 					if(counts[key]>=2){
 						possible.push(words[i]);
 						break;
@@ -32,13 +39,13 @@ try{
 		}
 	}
 	var grand_attempts=0;
-	while(result_list.length<10 && grand_attempts<200){
+	while(result_list.length<10 && grand_attempts<1000){
 		grand_attempts += 1;
 		var count=0;
 		var passphrase=[];
 		var length=0;
 		var attempts=0;
-		while(count<4 && attempts<300){
+		while(count<4 && attempts<10000){
 			var idx = Math.floor(Math.random() * possible.length);
 			if(passphrase.includes(possible[idx]) || (length+possible[idx].length)>max_pass.value){
 				attempts+=1;
@@ -52,9 +59,8 @@ try{
 			result_list.push(passphrase.join(' '));
 		}	
 	}
-	console.log(!result_list);
-	if(result_list==false){
-		alert("Error: Your constraints are too constraining. Try changing the word length range");
+	if(result_list.length<10){
+		alert("Error: Your constraints are too constraining. Couldn't generate 10 passwords.");
 	}
 	for(var i=0;i<result_list.length;i++){
 		var len = (result_list[i].length-3)
