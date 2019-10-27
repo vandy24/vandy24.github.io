@@ -50,6 +50,7 @@ async function get_map(postings, lat, lon, callback){
 		alert("Bad news! No local postings of your search!");
 		return;
 		}
+	if(postings["num_matches"]>50){alert('Lots of results! Will take a little while to load.');}
 	while(postings["next_page"]!=-1){
 		let temp = await get_more_postings(lat, lon, postings["next_page"]);
 		posting = posting.concat(temp["postings"]);
@@ -65,11 +66,11 @@ async function get_map(postings, lat, lon, callback){
 		
 		if(i==len-1){
 			if(j==i){
-				body+="&pp="+posting[i]["location"]["lat"]+","+posting[i]["location"]["long"]+";4;"+i;
+				body+="&pp="+posting[i]["location"]["lat"]+","+posting[i]["location"]["long"]+";4;"+(i+1);
 				j=i+1;
 			}
 			else{
-				var ji = j.toString()+"-"+i.toString();
+				var ji = (j+1).toString()+"-"+(i+1).toString();
 				body+="&pp="+posting[i]["location"]["lat"]+","+posting[i]["location"]["long"]+";4;"+ji;
 				j=i+1;
 			}	
@@ -117,7 +118,8 @@ function draw_table(map, postings){
 		var a = document.createElement("a");
 		a.href = postings[i]["external_url"];
 		a.innerHTML="Link";
-		td.innerHTML="Pin #: "+i.toString(10);
+		if((i+1)<=100){td.innerHTML="Pin #: "+(i+1).toString(10);}
+		else{td.innerHTML="Unmapped posting";}
 		td2.innerHTML=postings[i]["heading"];
 		price.innerHTML="Price: $"+postings[i]["price"];
 		td3.appendChild(a);
