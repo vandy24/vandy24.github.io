@@ -78,11 +78,11 @@ async function get_map(postings, lat, lon, callback){
 		else if(posting[i]["location"]["lat"]!=posting[i+1]["location"]["lat"] &&
 		posting[i]["location"]["long"]!=posting[i+1]["location"]["long"]){
 			if(j==i){
-				body+="&pp="+posting[i]["location"]["lat"]+","+posting[i]["location"]["long"]+";4;"+i;
+				body+="&pp="+posting[i]["location"]["lat"]+","+posting[i]["location"]["long"]+";4;"+(i+1);
 				j=i+1;
 			}
 			else{
-				var ji = j.toString()+"-"+i.toString();
+				var ji = (j+1).toString()+"-"+(i+1).toString();
 				body+="&pp="+posting[i]["location"]["lat"]+","+posting[i]["location"]["long"]+";4;"+ji;
 				j=i+1;
 			}
@@ -101,7 +101,6 @@ async function get_map(postings, lat, lon, callback){
 
 function draw_table(map, postings){
 	var img = document.createElement('img');
-	console.log(map);
 	img.src = map;
 	lis = document.querySelector("#results");
 	tr=document.createElement("tr");
