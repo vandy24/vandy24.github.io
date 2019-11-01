@@ -153,7 +153,7 @@ function draw_table(maps){
 		var a = document.createElement("a");
 		a.href = current_batch[i]["external_url"];
 		a.innerHTML="Link";
-		td.innerHTML="Pin #: "+i.toString();
+		td.innerHTML="Pin #: "+(i+1).toString();
 		td2.innerHTML=current_batch[i]["heading"];
 		price.innerHTML="Price: $"+current_batch[i]["price"];
 		td3.appendChild(a);
