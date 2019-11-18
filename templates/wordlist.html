@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script src="/static/popup.js"></script>
+<main>
+    {% for word in wordlist: %}
+        <div class="wordbox">
+			<button onclick="get_def('{{word}}','{{key}}', popup)">{{word}}</button>
+			<div id="myModal" class="modal"></div>
+		</div>
+    {% endfor %}
+</main>
+{% endblock %}
