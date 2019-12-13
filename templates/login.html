@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Login</h1>
-    <form action="/index" method="post">
+    <form action="/" method="post">
         {{ form.hidden_tag() }}
         {{ render_field(form.email) }}
         <br />
@@ -12,7 +12,7 @@
     </form>
 	
 	<h1>Register</h1>
-    <form action="/index" method="post">
+    <form action="/" method="post">
         {{ reg.hidden_tag() }}
         {{ render_field(reg.email) }}
         <br />
