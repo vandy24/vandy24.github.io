@@ -61,15 +61,15 @@ def citylist(c_code):
     return render_template('cities.html', cities=res.fetchall(),
                            columns=res.keys())
 
-@app.route('/continent')
-@login_required
-def countries_by_continent():
-    continent = request.args['selected_continent']
-    res = db.session.execute('select * from country where continent = :cont order by name',
-                             {'cont': continent})
-    c_list = res.fetchall()
-
-    return render_template('country_boot.html',
-                           countries=c_list,
-                           continents=[],
-                           columns=res.keys())
+##@app.route('/continent')
+##@login_required
+##def countries_by_continent():
+##    continent = request.args['selected_continent']
+##    res = db.session.execute('select * from country where continent = :cont order by name',
+##                             {'cont': continent})
+##    c_list = res.fetchall()
+##
+##    return render_template('country_boot.html',
+##                           countries=c_list,
+##                           continents=[],
+##                           columns=res.keys())
