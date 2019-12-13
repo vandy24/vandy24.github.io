@@ -4,6 +4,13 @@ docstring
 from flask import Flask, render_template, request, g
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
+import requests
+import itertools
+import os
+from flask_wtf.csrf import CSRFProtect
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, SelectField, validators
+from wtforms.validators import Regexp, Required, ValidationError
 
 app = Flask(__name__)
 Bootstrap(app)
