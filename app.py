@@ -48,8 +48,8 @@ def login():
         res = db.session.execute("select password from user")
         passwords = res.fetchall()
         if not (email in email and password in passwords):
-            return render_template("login.html", form=form)
-    else: return render_template("login.html", form=form)
+            return render_template("login.html", form=form, reg=reg)
+    else: return render_template("login.html", form=form, reg=reg)
     
     if reg.validate_on_submit():
         email = reg.email
@@ -58,7 +58,7 @@ def login():
         emails = res.fetchall()
         if not (email in email):
             db.session.execute(user.insert(), email=email, password=password)
-    else: return render_template("login.html", form=form)
+    else: return render_template("login.html", form=form, reg=reg)
 
 ##@app.route('/index')
 ##def citylist(c_code):
