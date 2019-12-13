@@ -44,6 +44,3 @@ def countries_by_continent():
                            countries=c_list,
                            continents=[],
                            columns=res.keys())
-
-
-app.run(debug=True, port=8003, host="0.0.0.0")
