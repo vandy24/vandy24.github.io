@@ -1,0 +1,22 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+
+        <form action="/continent">
+                <select name="selected_continent">
+                        {% for continent in continents %}
+                        <option value="{{continent[0]}}">{{continent[0]}}</option>
+                        {% endfor %}
+                </select>
+                <input type="submit" name="submit" value="Go!">
+        </form>
+        
+        <table class="table table-striped">
+	<tr><th>Name</th><th>Continent</th><th>Population</th></tr>
+        {% for country in countries %}
+            <tr><td> <a href="/citylist/{{country.code}}" >{{ country.name }}</a> </td> <td>{{ country.continent }}</td> <td>{{ country.population}} </td> </tr>
+
+        {% endfor %}
+        </table>
+
+{% endblock %}
