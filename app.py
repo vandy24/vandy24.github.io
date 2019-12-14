@@ -77,6 +77,8 @@ def login():
         res = db.session.execute("select email from user")
         emails = res.fetchall()
         if not (email in emails):
+            query = "INSERT INTO user VALUES ('{}',’{}')".format(email, password)
+            print(query)
             db.session.execute(user.insert(), email=email, password=password)
             return redirect(url_for('login')) #
     else: return render_template("login.html", form=form, reg=reg)
