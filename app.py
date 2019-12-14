@@ -20,12 +20,12 @@ email = None
 password = None
 
 class LoginForm(FlaskForm):
-    email = StringField("Email")
+    email = StringField("User Name")
     password = StringField("Password")
     submit = SubmitField("Login")
 
 class RegisterForm(FlaskForm):
-    remail = StringField("Email")
+    remail = StringField("User Name")
     rpassword = StringField("Password")
     rsubmit = SubmitField("Register")
     
@@ -36,6 +36,7 @@ csrf.init_app(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    
     global email
     global password
     form = LoginForm()
@@ -63,7 +64,8 @@ def login():
         res = db.session.execute("select pass_word from users")
         passwords = res.fetchall()
         if not (email in emails and password in passwords):
-            return redirect(url_for('login')) #render_template("login.html", form=form, reg=reg)
+            raise ValidationError("Incorrect User Name or Password")
+            #return redirect(url_for('login')) #render_template("login.html", form=form, reg=reg)
 
     if reg.validate_on_submit() and reg_email and reg_password:
         print('2')
@@ -80,7 +82,7 @@ def login():
             print(query)
             db.session.execute(query)
             db.session.commit()
-            return render_template("login.html", form=form, reg=reg) #
+            return redirect(url_for('login')) #
     else: return render_template("login.html", form=form, reg=reg)
 
 ##@app.route('/index')
