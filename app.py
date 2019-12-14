@@ -1,7 +1,7 @@
 """
 docstring
 """
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request, g, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 import requests
