@@ -25,9 +25,9 @@ class LoginForm(FlaskForm):
     submit = SubmitField("Login")
 
 class RegisterForm(FlaskForm):
-    email = StringField("Email")
-    password = StringField("Password")
-    submit = SubmitField("Register")
+    remail = StringField("Email")
+    rpassword = StringField("Password")
+    rsubmit = SubmitField("Register")
     
 csrf = CSRFProtect()
 app.config["SECRET_KEY"] = "row the boat"
@@ -48,8 +48,8 @@ def login():
     print(passwords)
     login_email = form.email
     login_password = form.password
-    reg_email = reg.email
-    reg_password = reg.password
+    reg_email = reg.remail
+    reg_password = reg.rpassword
     if form.validate_on_submit() and login_email and login_password:
         print('1')
         print(login_email)
@@ -72,8 +72,8 @@ def login():
         print(login_password)
         print(reg_email)
         print(reg_password)
-        email = reg.email
-        password = reg.password
+        email = reg.remail
+        password = reg.rpassword
         res = db.session.execute("select email from user")
         emails = res.fetchall()
         if not (email in emails):
