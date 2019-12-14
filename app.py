@@ -14,6 +14,7 @@ from wtforms.validators import Regexp, Required, ValidationError
 
 app = Flask(__name__)
 Bootstrap(app)
+print(os.getenv('DATABASE_URL'))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///final.db'
 db = SQLAlchemy(app)
 email = None
@@ -50,11 +51,6 @@ def login():
     login_password = form.password.data
     reg_email = reg.remail.data
     reg_password = reg.rpassword.data
-
-    print(login_email)
-    print(login_password)
-    print(reg_email)
-    print(reg_password)
     if form.validate_on_submit() and login_email and login_password:
         print('1')
         print(login_email)
