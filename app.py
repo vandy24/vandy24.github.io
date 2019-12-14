@@ -34,7 +34,7 @@ app.config["SECRET_KEY"] = "row the boat"
 csrf.init_app(app)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def login():
     global email
     global password

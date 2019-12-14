@@ -3,7 +3,7 @@
 
 {% block content %}
     <h1>Login</h1>
-    <form action="/" method="post">
+    <form action="/" method=['GET', 'POST']>
         {{ form.hidden_tag() }}
         {{ render_field(form.email) }}
         <br />
@@ -13,7 +13,7 @@
     </form>
 	
 	<h1>Register</h1>
-    <form action="/" method="post">
+    <form action="/" method=['GET', 'POST']>
         {{ reg.hidden_tag() }}
         {{ render_field(reg.email) }}
         <br />
