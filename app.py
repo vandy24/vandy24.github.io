@@ -46,19 +46,18 @@ def login():
     passwords = res.fetchall()
     print(emails)
     print(passwords)
-    login_email = form.email
-    login_password = form.password
-    reg_email = reg.remail
-    reg_password = reg.rpassword
-    print(login_email.value)
+    login_email = form.email.data
+    login_password = form.password.data
+    reg_email = reg.remail.data
+    reg_password = reg.rpassword.data
     if form.validate_on_submit() and login_email and login_password:
         print('1')
         print(login_email)
         print(login_password)
         print(reg_email)
         print(reg_password)
-        email = form.email
-        password = form.password
+        email = form.email.data
+        password = form.password.data
         res = db.session.execute("select email from user")
         emails = res.fetchall()
         res = db.session.execute("select password from user")
@@ -73,8 +72,8 @@ def login():
         print(login_password)
         print(reg_email)
         print(reg_password)
-        email = reg.remail
-        password = reg.rpassword
+        email = reg.remail.data
+        password = reg.rpassword.data
         res = db.session.execute("select email from user")
         emails = res.fetchall()
         if not (email in emails):
