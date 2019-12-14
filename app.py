@@ -79,6 +79,7 @@ def login():
             query = "INSERT INTO users VALUES ('{}', '{}');".format(email, password)
             print(query)
             db.session.execute(query)
+            db.session.commit()
             return render_template("login.html", form=form, reg=reg) #
     else: return render_template("login.html", form=form, reg=reg)
 
