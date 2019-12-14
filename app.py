@@ -40,9 +40,9 @@ def login():
     global password
     form = LoginForm()
     reg = RegisterForm()
-    res = db.session.execute("select email from user")
+    res = db.session.execute("select email from users")
     emails = res.fetchall()
-    res = db.session.execute("select password from user")
+    res = db.session.execute("select pass_word from users")
     passwords = res.fetchall()
     print(emails)
     print(passwords)
@@ -58,9 +58,9 @@ def login():
         print(reg_password)
         email = form.email.data
         password = form.password.data
-        res = db.session.execute("select email from user")
+        res = db.session.execute("select email from users")
         emails = res.fetchall()
-        res = db.session.execute("select password from user")
+        res = db.session.execute("select pass_word from users")
         passwords = res.fetchall()
         if not (email in emails and password in passwords):
             return redirect(url_for('login')) #render_template("login.html", form=form, reg=reg)
@@ -73,10 +73,10 @@ def login():
         print(reg_password)
         email = reg.remail.data
         password = reg.rpassword.data
-        res = db.session.execute("select email from user")
+        res = db.session.execute("select email from users")
         emails = res.fetchall()
         if not (email in emails):
-            query = "INSERT INTO user VALUES ('{}', '{}');".format(email, password)
+            query = "INSERT INTO users VALUES ('{}', '{}');".format(email, password)
             print(query)
             db.session.execute(query)
             return redirect(url_for('login')) #
