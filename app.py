@@ -50,6 +50,10 @@ def login():
     login_password = form.password
     reg_email = reg.email
     reg_password = reg.password
+    print(login_email)
+    print(login_password)
+    print(reg_email)
+    print(reg_password)
     if form.validate_on_submit() and login_email and login_password:
         print('1')
         email = form.email
