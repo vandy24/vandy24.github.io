@@ -40,6 +40,12 @@ def login():
     global password
     form = LoginForm()
     reg = RegisterForm()
+    res = db.session.execute("select email from user")
+    emails = res.fetchall()
+    res = db.session.execute("select password from user")
+    print(emails)
+    print(passwords)
+        passwords = res.fetchall()
     if form.validate_on_submit():
         email = form.email
         password = form.password
@@ -47,8 +53,6 @@ def login():
         emails = res.fetchall()
         res = db.session.execute("select password from user")
         passwords = res.fetchall()
-        print(emails)
-        print(passwords)
         if not (email in emails and password in passwords):
             return render_template("login.html", form=form, reg=reg)
     else: return render_template("login.html", form=form, reg=reg)
