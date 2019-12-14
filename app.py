@@ -50,6 +50,7 @@ def login():
     login_password = form.password
     reg_email = reg.remail
     reg_password = reg.rpassword
+    print(login_email.value)
     if form.validate_on_submit() and login_email and login_password:
         print('1')
         print(login_email)
@@ -79,7 +80,7 @@ def login():
         if not (email in emails):
             query = "INSERT INTO user VALUES ('{}',’{}')".format(email, password)
             print(query)
-            db.session.execute(user.insert(), email=email, password=password)
+            db.session.execute(query)
             return redirect(url_for('login')) #
     else: return render_template("login.html", form=form, reg=reg)
 
