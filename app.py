@@ -75,6 +75,9 @@ def login():
     print(login_password)
     print(reg_email)
     print(reg_password)
+    print(bool(reg.validate_on_submit()))
+    print(bool(reg_email))
+    print(bool(reg_password))
     if reg.validate_on_submit() and reg_email and reg_password:
         print('2')
         print(login_email)
