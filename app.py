@@ -43,9 +43,9 @@ def login():
     res = db.session.execute("select email from user")
     emails = res.fetchall()
     res = db.session.execute("select password from user")
+    passwords = res.fetchall()
     print(emails)
     print(passwords)
-        passwords = res.fetchall()
     if form.validate_on_submit():
         email = form.email
         password = form.password
