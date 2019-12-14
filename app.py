@@ -50,12 +50,12 @@ def login():
     login_password = form.password
     reg_email = reg.email
     reg_password = reg.password
-    print(login_email)
-    print(login_password)
-    print(reg_email)
-    print(reg_password)
     if form.validate_on_submit() and login_email and login_password:
         print('1')
+        print(login_email)
+        print(login_password)
+        print(reg_email)
+        print(reg_password)
         email = form.email
         password = form.password
         res = db.session.execute("select email from user")
@@ -63,17 +63,22 @@ def login():
         res = db.session.execute("select password from user")
         passwords = res.fetchall()
         if not (email in emails and password in passwords):
-            return render_template("login.html", form=form, reg=reg)
+            return redirect(url_for('login')) #render_template("login.html", form=form, reg=reg)
     else: return render_template("login.html", form=form, reg=reg)
     
     if reg.validate_on_submit() and reg_email and reg_password:
         print('2')
+        print(login_email)
+        print(login_password)
+        print(reg_email)
+        print(reg_password)
         email = reg.email
         password = reg.password
         res = db.session.execute("select email from user")
         emails = res.fetchall()
         if not (email in emails):
             db.session.execute(user.insert(), email=email, password=password)
+            return redirect(url_for('login')) #
     else: return render_template("login.html", form=form, reg=reg)
 
 ##@app.route('/index')
