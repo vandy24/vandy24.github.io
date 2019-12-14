@@ -50,6 +50,11 @@ def login():
     login_password = form.password.data
     reg_email = reg.remail.data
     reg_password = reg.rpassword.data
+
+    print(login_email)
+    print(login_password)
+    print(reg_email)
+    print(reg_password)
     if form.validate_on_submit() and login_email and login_password:
         print('1')
         print(login_email)
@@ -65,7 +70,11 @@ def login():
         if not (email in emails and password in passwords):
             return redirect(url_for('login')) #render_template("login.html", form=form, reg=reg)
     else: return render_template("login.html", form=form, reg=reg)
-    
+
+    print(login_email)
+    print(login_password)
+    print(reg_email)
+    print(reg_password)
     if reg.validate_on_submit() and reg_email and reg_password:
         print('2')
         print(login_email)
