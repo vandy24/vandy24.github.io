@@ -47,7 +47,7 @@ def login():
         emails = res.fetchall()
         res = db.session.execute("select password from user")
         passwords = res.fetchall()
-        if not (email in email and password in passwords):
+        if not (email in emails and password in passwords):
             return render_template("login.html", form=form, reg=reg)
     else: return render_template("login.html", form=form, reg=reg)
     
@@ -56,7 +56,7 @@ def login():
         password = reg.password
         res = db.session.execute("select email from user")
         emails = res.fetchall()
-        if not (email in email):
+        if not (email in emails):
             db.session.execute(user.insert(), email=email, password=password)
     else: return render_template("login.html", form=form, reg=reg)
 
