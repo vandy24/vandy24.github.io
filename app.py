@@ -46,7 +46,11 @@ def login():
     passwords = res.fetchall()
     print(emails)
     print(passwords)
-    if form.validate_on_submit():
+    login_email = form.email
+    login_password = form.password
+    reg_email = reg.email
+    reg_password = reg.password
+    if form.validate_on_submit() and login_email and login_password:
         print('1')
         email = form.email
         password = form.password
@@ -58,7 +62,7 @@ def login():
             return render_template("login.html", form=form, reg=reg)
     else: return render_template("login.html", form=form, reg=reg)
     
-    if reg.validate_on_submit():
+    if reg.validate_on_submit() and reg_email and reg_password:
         print('2')
         email = reg.email
         password = reg.password
