@@ -14,7 +14,7 @@ from wtforms.validators import Regexp, Required, ValidationError
 
 app = Flask(__name__)
 Bootstrap(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///final.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 db = SQLAlchemy(app)
 email = None
 password = None
@@ -38,7 +38,6 @@ csrf.init_app(app)
 def login():
     global email
     global password
-    print(os.getenv('DATABASE_URL'))
     form = LoginForm()
     reg = RegisterForm()
     res = db.session.execute("select email from user")
