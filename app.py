@@ -47,6 +47,7 @@ def login():
     print(emails)
     print(passwords)
     if form.validate_on_submit():
+        print('1')
         email = form.email
         password = form.password
         res = db.session.execute("select email from user")
@@ -58,6 +59,7 @@ def login():
     else: return render_template("login.html", form=form, reg=reg)
     
     if reg.validate_on_submit():
+        print('2')
         email = reg.email
         password = reg.password
         res = db.session.execute("select email from user")
