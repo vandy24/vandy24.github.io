@@ -70,13 +70,6 @@ def login():
         if not (email in emails and password in passwords):
             return redirect(url_for('login')) #render_template("login.html", form=form, reg=reg)
 
-    print(login_email)
-    print(login_password)
-    print(reg_email)
-    print(reg_password)
-    print(bool(reg.validate_on_submit()))
-    print(bool(reg_email))
-    print(bool(reg_password))
     if reg.validate_on_submit() and reg_email and reg_password:
         print('2')
         print(login_email)
@@ -88,7 +81,7 @@ def login():
         res = db.session.execute("select email from user")
         emails = res.fetchall()
         if not (email in emails):
-            query = "INSERT INTO user VALUES ('{}',’{}')".format(email, password)
+            query = "INSERT INTO user VALUES ('{}', '{}');".format(email, password)
             print(query)
             db.session.execute(query)
             return redirect(url_for('login')) #
