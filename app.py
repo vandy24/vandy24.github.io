@@ -47,7 +47,7 @@ def len_check_pic(form, field):
         raise ValidationError("Link too long! Max 200 characters.")
 
 def len_check_gen(form, field):
-    if len(form.review.data)>45:
+    if len(form.field.data)>45:
         raise ValidationError("Entry too long! Max 45 characters.")
     
 def pass_check(form, field):
