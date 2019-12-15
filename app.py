@@ -145,7 +145,8 @@ def postings_list():
             lon = i[7]
             title = i[1]
             desc = i[2]
-            body="https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels?pp="+str(lat)+","+str(lon)+";4;"+title+"&key=AvWjYu-PKLX_yA_wjaiVhhgn8L4zISfT_zN1cpFjwLyzByKro4crRk6pOE1r8fmI"
+            build = i[3]
+            body="https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels?pp="+str(lat)+","+str(lon)+";4;"+build+"&key=AvWjYu-PKLX_yA_wjaiVhhgn8L4zISfT_zN1cpFjwLyzByKro4crRk6pOE1r8fmI"
             print(body)
             results.append((body, title, desc, imgs))
     return render_template("postings_list.html", search_res=results)
