@@ -24,10 +24,10 @@ results = None
 def set_cookie(email):
     res=flask.make_response("Hello World")
     res.set_cookie("email", value=email, domain='127.0.0.1')
-    return res
+    return res, 200
 
 def get_email():
-    cookies=request.cookies.get('email')
+    cookies=request.cookies
     print('cookies')
     print(cookies)
     username = cookies
