@@ -20,13 +20,13 @@
 		</tr>
 		{% for result in search_res: %}
 		<tr>
-			<td><div id = "limit_height">{{result[4]}}</div></td>
-			<td><div id = "limit_height">{{result[1]}}<br>{{result[2]}}</div></td>
-			<td id="image_cell"><div id = "limit_height"><img src={{result[0]}}>
+			<div id = "limit_height"><td>{{result[4]}}</td></div>
+			<div id = "limit_height"><td>{{result[1]}}<br>{{result[2]}}</td></div>
+			<div id = "limit_height"><td id="image_cell"><img src={{result[0]}}>
 			{% for img in result[3]: %}
-				<img src={{img}}></div></img>
+				<img src={{img}}></img>
 			{% endfor %}
-			</td>
+			</td></div>
 		</tr>
 		{% endfor %}
 	</tbody></table>

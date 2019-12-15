@@ -58,10 +58,10 @@
 	}
 	#image_cell{
 		width: 25%;
-		overflow: scroll;
+		overflow: auto;
 	}
 	#limit_height{
 		height: 15%;
-		overflow: scroll;
+		overflow: auto;
 	}
 </style>
