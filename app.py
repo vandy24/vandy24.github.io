@@ -149,8 +149,8 @@ def postings_list():
             res = db.session.execute(query)
             imgs = res.fetchall()
             print('Images {}'.format(imgs))
-            for i in range(len(imgs)):
-                imgs[i] = imgs[i][0]
+            for j in range(len(imgs)):
+                imgs[j] = imgs[j][0]
             lat = i[6]
             lon = i[7]
             title = i[1]
