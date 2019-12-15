@@ -25,7 +25,7 @@ def login_check(form, field):
     login_email = form.email.data
     for i in range(len(emails)):
         emails[i] = emails[i][0]
-    if not login_email in emails and login_email:
+    if not login_email in emails or not login_email:
         raise ValidationError("Incorrect User Name or Password")
     
 def pass_check(form, field):
@@ -34,7 +34,7 @@ def pass_check(form, field):
     login_password = form.password.data
     for i in range(len(passwords)):
         passwords[i] = passwords[i][0]
-    if not login_password in passwords and login_password:
+    if not login_password in passwords or not login_password:
         raise ValidationError("Incorrect User Name or Password")
 
 def reg_check(form, field):
@@ -43,8 +43,8 @@ def reg_check(form, field):
     login_email = form.remail.data
     for i in range(len(emails)):
         emails[i] = emails[i][0]
-    if login_email in emails and login_email:
-        raise ValidationError("Username taken")
+    if login_email in emails or not login_email:
+        raise ValidationError("Username taken or unusable")
     
 class LoginForm(FlaskForm):
     email = StringField("User Name", validators=[login_check])
