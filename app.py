@@ -93,6 +93,8 @@ def login():
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     form=SearchForm()
+    print(form.search.data)
+    print(bool(form.validate_on_submit()))
     if form.validate_on_submit():
         results=[]
         query = form.search.data
@@ -106,6 +108,7 @@ def search():
                 results.append(posting)
         print(results)
         #return render_template("posting_list.html", postings = results)
+    print('here')
     return render_template("search.html", form=form)
         
         
