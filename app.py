@@ -25,7 +25,7 @@ def login_check(form, field):
     login_email = form.email.data
     for i in range(len(emails)):
         emails[i] = emails[i][0]
-    if not (login_email in emails):
+    if not (login_email in emails and login_email):
         raise ValidationError("Incorrect User Name or Password")
     
 def pass_check(form, field):
@@ -34,7 +34,7 @@ def pass_check(form, field):
     login_password = form.password.data
     for i in range(len(passwords)):
         passwords[i] = passwords[i][0]
-    if not (login_password in passwords):
+    if not (login_password in passwords and login_password):
         raise ValidationError("Incorrect User Name or Password")
 
 def reg_check(form, field):
@@ -67,46 +67,23 @@ def login():
     global password
     form = LoginForm()
     reg = RegisterForm()
-    res = db.session.execute("select email from users")
-    emails = res.fetchall()
-    res = db.session.execute("select pass_word from users")
-    passwords = res.fetchall()
-    print(emails)
-    print(passwords)
     login_email = form.email.data
     login_password = form.password.data
     reg_email = reg.remail.data
     reg_password = reg.rpassword.data
     if form.validate_on_submit() and login_email and login_password:
-        print('1')
-        print(login_email)
-        print(login_password)
-        print(reg_email)
-        print(reg_password)
         email = form.email.data
         password = form.password.data
-        res = db.session.execute("select email from users")
-        emails = res.fetchall()
-        res = db.session.execute("select pass_word from users")
-        passwords = res.fetchall()
-        if not (email in emails and password in passwords):
-            return redirect(url_for('login')) #render_template("login.html", form=form, reg=reg)
-    if reg.validate_on_submit() and reg_email and reg_password:
-        print('2')
-        print(login_email)
-        print(login_password)
-        print(reg_email)
-        print(reg_password)
+        return redirect(url_for('login'))
+    elif reg.validate_on_submit() and reg_email and reg_password:
         email = reg.remail.data
         password = reg.rpassword.data
         res = db.session.execute("select email from users")
         emails = res.fetchall()
-        if not (email in emails):
-            query = "INSERT INTO users VALUES ('{}', '{}');".format(email, password)
-            print(query)
-            db.session.execute(query)
-            db.session.commit()
-            return redirect(url_for('login'))
+        query = "INSERT INTO users VALUES ('{}', '{}');".format(email, password)
+        db.session.execute(query)
+        db.session.commit()
+        return redirect(url_for('login'))
     else: return render_template("login.html", form=form, reg=reg)
 
 ##@app.route('/index')
