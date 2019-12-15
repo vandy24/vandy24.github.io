@@ -16,10 +16,25 @@ app = Flask(__name__)
 Bootstrap(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 db = SQLAlchemy(app)
-email = None
-password = None
-results= None
+email
+password
+results
 
+def set_cookie(email):
+    res=flask.make_response()
+    res.set_cookie("email", value=email)
+    return res
+
+def get_email():
+    session = requests.Session()
+    cookies=session.cookies.get_dict()
+    username = cookies.get('email')
+
+def logout():
+    res=flask.make_response()
+    res.set_cookie("email", value=email)
+    return res
+    
 def login_check(form, field):
     res = db.session.execute("select email from users")
     emails = res.fetchall()
@@ -83,6 +98,7 @@ csrf.init_app(app)
 def login():
     global email
     global password
+    email = get_email()
     form = LoginForm()
     reg = RegisterForm()
     login_email = form.email.data
@@ -91,12 +107,16 @@ def login():
     reg_password = reg.rpassword.data
     print(email)
     print(password)
+    if get_email():
+        return redirect(url_for("search"))
     if form.validate_on_submit() and login_email and login_password or email:
         email = form.email.data
+        set_cookie(email)
         password = form.password.data
         return redirect(url_for("search"))
     elif reg.validate_on_submit() and reg_email and reg_password or email:
         email = reg.remail.data
+        set_cookie(email)
         password = reg.rpassword.data
         res = db.session.execute("select email from users")
         emails = res.fetchall()
@@ -121,6 +141,7 @@ def search():
 def postings_list():
     global email
     global password
+    email = get_email()
     print(email)
     print(password)
     form=SearchForm()
@@ -148,7 +169,7 @@ def postings_list():
             build = i[3]
             body="https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels?pp="+str(lat)+","+str(lon)+";4;"+build+"&key=AvWjYu-PKLX_yA_wjaiVhhgn8L4zISfT_zN1cpFjwLyzByKro4crRk6pOE1r8fmI"
             print(body)
-            results.append((body, title, desc, imgs))
+            results.append((body, title, desc, imgs, email))
     return render_template("postings_list.html", search_res=results)
 
 
