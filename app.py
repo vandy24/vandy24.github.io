@@ -23,7 +23,7 @@ results = None
 
 def set_cookie(email):
     res=flask.make_response("Hello World")
-    res.set_cookie("email", value=email)
+    res.set_cookie("email", value=email, domain='127.0.0.1')
     return res
 
 def get_email():
@@ -35,7 +35,7 @@ def get_email():
 
 def logout():
     res=flask.make_response()
-    res.set_cookie("email", value=email)
+    res.set_cookie("email", value=email, domain='127.0.0.1')
     return res
     
 def login_check(form, field):
