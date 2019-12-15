@@ -1,7 +1,8 @@
 """
 docstring
 """
-from flask import Flask, render_template, request, g, redirect, url_for
+from flask import Flask, render_template, request, g, redirect, url_for, session
+from flask.ext.session import Session
 import flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
@@ -14,30 +15,25 @@ from wtforms import StringField, SubmitField, SelectField, validators, TextAreaF
 from wtforms.validators import Regexp, Required, ValidationError
 
 app = Flask(__name__)
+SESSION_TYPE = 'redis'
 Bootstrap(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 db = SQLAlchemy(app)
 email = None
 password = None
 results = None
+Session(app)
 
-@app.route('/save')
 def set_cookie(email):
-    res=flask.make_response("Hello World")
-    res.set_cookie("email", value=email, domain='127.0.0.1')
-    return res, 200
+    session['email'] = email
+    return email
     
 def get_email():
-    cookies=request.cookies
-    print('cookies')
-    print(cookies)
-    username = cookies.get('email')
+    username = session.get('email', None)
     return username
 
 def logout():
-    res=flask.make_response()
-    res.set_cookie("email", value=email, domain='127.0.0.1')
-    return res
+    session['email'] = None
     
 def login_check(form, field):
     res = db.session.execute("select email from users")
@@ -116,12 +112,12 @@ def login():
         return redirect(url_for("search"))
     if form.validate_on_submit() and login_email and login_password or email:
         email = form.email.data
-        redirect(url_for('set_cookie'))
+        set_cookie(email)
         password = form.password.data
         return redirect(url_for("search"))
     elif reg.validate_on_submit() and reg_email and reg_password or email:
         email = reg.remail.data
-        redirect(url_for('set_cookie'))
+        set_cookie(email)
         password = reg.rpassword.data
         res = db.session.execute("select email from users")
         emails = res.fetchall()
