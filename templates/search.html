@@ -3,7 +3,7 @@
 
 {% block content %}
     <h1>Search</h1>
-    <form method='post'>
+    <form action="/search" method='post'>
         {{ form.hidden_tag() }}
         {{ render_field(form.search) }}
         <br />
