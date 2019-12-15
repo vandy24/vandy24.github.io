@@ -103,6 +103,7 @@ def login():
             db.session.execute(query)
             db.session.commit()
             return redirect(url_for('login'))
+        else: return render_template("login.html", form=form, reg=reg)
 
 ##@app.route('/index')
 ##def citylist(c_code):
