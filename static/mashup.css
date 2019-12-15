@@ -25,6 +25,7 @@
     }	
 	body{
 		background-image: linear-gradient(to right, #D43D1A, #E04006);
+		text-align: center;
 		}
 		
 	img{width: 100%;}

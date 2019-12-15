@@ -2,6 +2,7 @@
 {% from "_formhelpers.html" import render_field %}
 
 {% block content %}
+<body>
 	<link rel="stylesheet" type="text/css" href="/static/mashup.css">
     <a class="nav_buttons" href="/search">New Search</a>
 	<a class="nav_buttons" href="/logout">Log Out</a>
@@ -21,5 +22,6 @@
 		<br />
         {{form.submit()}}
     </form>
+</body>
 	
 {% endblock %}
