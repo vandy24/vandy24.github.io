@@ -125,13 +125,13 @@ def postings_list():
     print(form.search.data)
     print(bool(form.validate_on_submit()))
     query = form.search.data
-    res = db.session.execute("select * from posts join buildings on posts.building = buildings.building")
+    res = db.session.execute("select * from posts join buildings on posts.building = buildings.name")
     posts = res.fetchall()
     print(posts)
     body=''
     results=[]
     for i in posts:
-        if query.lower() in i[1].lower():
+        if query.lower() in i[1].lower() or query.lower() in i[3].lower() or query.lower() in i[2].lower():
             upload_id = i[4]
             query = "select url from imgs where upload_id = {}".format(upload_id)
             res = db.session.execute(query)
@@ -178,7 +178,7 @@ def new_posting():
         building[0]
         
         query = "INSERT INTO posts VALUES ('{}', '{}', '{}', '{}', '{}', '{}');".format(email, form.title.data, form.review.data, building, ide, ide)
-        res = db.session.execute("select * from posts join buildings on posts.building = buildings.building")
+        res = db.session.execute("select * from posts join buildings on posts.building = buildings.name")
         db.session.execute(query)
         db.session.commit()
         return redirect(url_for("search"))
