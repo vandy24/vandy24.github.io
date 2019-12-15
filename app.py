@@ -71,6 +71,30 @@ def login():
     global password
     form = LoginForm()
     reg = RegisterForm()
+    return render_template("login.html", form=form, reg=reg)
+##    login_email = form.email.data
+##    login_password = form.password.data
+##    reg_email = reg.remail.data
+##    reg_password = reg.rpassword.data
+##    if form.validate_on_submit() and login_email and login_password:
+##        email = form.email.data
+##        password = form.password.data
+##        return render_template("login.html", form=form, reg = reg)
+##    elif reg.validate_on_submit() and reg_email and reg_password:
+##        email = reg.remail.data
+##        password = reg.rpassword.data
+##        res = db.session.execute("select email from users")
+##        emails = res.fetchall()
+##        query = "INSERT INTO users VALUES ('{}', '{}');".format(email, password)
+##        db.session.execute(query)
+##        db.session.commit()
+##        return redirect(url_for('login'))
+##    else: return render_template("login.html", form=form, reg=reg)
+
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    form = LoginForm()
+    reg = RegisterForm()
     login_email = form.email.data
     login_password = form.password.data
     reg_email = reg.remail.data
@@ -78,7 +102,6 @@ def login():
     if form.validate_on_submit() and login_email and login_password:
         email = form.email.data
         password = form.password.data
-        return render_template("login.html", form=form, reg = reg)
     elif reg.validate_on_submit() and reg_email and reg_password:
         email = reg.remail.data
         password = reg.rpassword.data
@@ -87,11 +110,8 @@ def login():
         query = "INSERT INTO users VALUES ('{}', '{}');".format(email, password)
         db.session.execute(query)
         db.session.commit()
-        return redirect(url_for('login'))
     else: return render_template("login.html", form=form, reg=reg)
-
-@app.route('/search', methods=['GET', 'POST'])
-def search():
+    
     form=SearchForm()
     print(form.search.data)
     print(bool(form.validate_on_submit()))
