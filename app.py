@@ -73,7 +73,7 @@ class NewPost(FlaskForm):
                                                  ('Territorial', 'Territorial'), ('Frontier', 'Frontier'),
                                                  ('Sanford', 'Sanford'), ('Centennial', 'Centennial'),
                                                  ('Comstock', 'Comstock'), ('Middlebrook', 'Middlebrook'),
-                                                 ('Pioneer', 'Pioneer')],  validators =[validators.required()])
+                                                 ('Pioneer', 'Pioneer'), ('Bailey', 'Bailey')],  validators =[validators.required()])
     title = StringField("Title", validators =[validators.required()])
     review = TextAreaField("Review", validators =[validators.required()])
     photo1 = StringField("Link to photo (optional)", validators=[validators.URL()])
@@ -179,9 +179,9 @@ def postings_list():
 def new_posting():
     global email
     global password
+    email=get_email()
     print(email)
     print(password)
-    email=get_email()
     form = NewPost()
     if form.title.data and form.review.data and form.building.data:
         query = "select id from posts order by desc limit 1"
