@@ -21,7 +21,7 @@ password = None
 results = None
 
 def set_cookie(email):
-    res=flask.make_response()
+    res=make_response()
     res.set_cookie("email", value=email)
     return res
 
