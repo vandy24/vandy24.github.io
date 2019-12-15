@@ -36,8 +36,8 @@ def pass_check(form, field):
 def reg_check(form, field):
     res = db.session.execute("select email from users")
     emails = res.fetchall()
-    login_email = form.email.data
-    if (login_email in emails):
+    login_email = form.remail.data
+    if (login_email in emails and login_email):
         raise ValidationError("Username taken")
     
 class LoginForm(FlaskForm):
