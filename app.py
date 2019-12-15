@@ -93,6 +93,8 @@ def login():
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
+    global email
+    global password
     form = LoginForm()
     reg = RegisterForm()
     login_email = form.email.data
