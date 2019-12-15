@@ -21,15 +21,11 @@ email = None
 password = None
 results = None
 
-def set_cookies(email):
+@app.route('/save')
+def set_cookie(email):
     res=flask.make_response("Hello World")
     res.set_cookie("email", value=email, domain='127.0.0.1')
     return res, 200
-
-def set_cookie(email):
-    set_cookies(email)
-    username = request.cookies.get('email')
-    print(username)
     
 def get_email():
     cookies=request.cookies
@@ -120,12 +116,12 @@ def login():
         return redirect(url_for("search"))
     if form.validate_on_submit() and login_email and login_password or email:
         email = form.email.data
-        set_cookie(email)
+        redirect(url_for('set_cookie'))
         password = form.password.data
         return redirect(url_for("search"))
     elif reg.validate_on_submit() and reg_email and reg_password or email:
         email = reg.remail.data
-        set_cookie(email)
+        redirect(url_for('set_cookie'))
         password = reg.rpassword.data
         res = db.session.execute("select email from users")
         emails = res.fetchall()
