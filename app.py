@@ -109,7 +109,7 @@ class SearchForm(FlaskForm):
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
-    session.['email'] = None
+    session['email'] = None
     return redirect(url_for("login"))
 
 @app.route('/', methods=['GET', 'POST'])
