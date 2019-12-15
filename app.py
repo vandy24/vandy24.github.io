@@ -117,7 +117,7 @@ def login():
 ##        db.session.commit()
 ##    else: return render_template("login.html", form=form, reg=reg)
         
-@app.route('/searcht', methods=['GET', 'POST'])
+@app.route('/search', methods=['GET', 'POST'])
 def search():
     form=SearchForm()
     return render_template("search.html", form=form)
@@ -149,6 +149,8 @@ def postings_list():
             body+="&key=AvWjYu-PKLX_yA_wjaiVhhgn8L4zISfT_zN1cpFjwLyzByKro4crRk6pOE1r8fmI"
             results.append((body, title, desc, imgs))
     return render_template("postings_list.html", search_res=results)
+
+
                 
 ##def citylist(c_code):
 ##    res = db.session.execute('select * from city where countrycode = :ccode',
