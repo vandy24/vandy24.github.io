@@ -55,6 +55,10 @@ class RegisterForm(FlaskForm):
     remail = StringField("User Name", validators=[reg_check])
     rpassword = StringField("Password")
     rsubmit = SubmitField("Register")
+
+class SearchForm(FlaskForm):
+    search = StringField("Search")
+    submit = SubmitField("Go!")
     
 csrf = CSRFProtect()
 app.config["SECRET_KEY"] = "row the boat"
@@ -74,7 +78,7 @@ def login():
     if form.validate_on_submit() and login_email and login_password:
         email = form.email.data
         password = form.password.data
-        return redirect(url_for('login'))
+        return render_template("search.html", form=SearchForm())
     elif reg.validate_on_submit() and reg_email and reg_password:
         email = reg.remail.data
         password = reg.rpassword.data
@@ -86,7 +90,25 @@ def login():
         return redirect(url_for('login'))
     else: return render_template("login.html", form=form, reg=reg)
 
-##@app.route('/index')
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    form=SearchForm()
+    if form.validate_on_submit():
+        results=[]
+        query = form.search.data
+        res = db.session.execute("select * from postings")
+        postings = res.fetchall()
+        for posting in postings:
+            if query == '':
+                results = postings
+                break
+            if query in posting[1] or query in posting[2]
+            results.append(posting)
+        print(results)
+        #return render_template("posting_list.html", postings = results)
+    return render_template("search.html", form=form)
+        
+        
 ##def citylist(c_code):
 ##    res = db.session.execute('select * from city where countrycode = :ccode',
 ##                             {'ccode': c_code})
