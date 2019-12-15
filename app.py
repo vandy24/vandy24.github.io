@@ -9,7 +9,7 @@ import itertools
 import os
 from flask_wtf.csrf import CSRFProtect
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, validators
+from wtforms import StringField, SubmitField, SelectField, validators, TextAreaField
 from wtforms.validators import Regexp, Required, ValidationError
 
 app = Flask(__name__)
@@ -57,9 +57,9 @@ class NewPost(FlaskForm):
                                                  ('Territorial', 'Territorial'), ('Frontier', 'Frontier'),
                                                  ('Sanford', 'Sanford'), ('Centennial', 'Centennial'),
                                                  ('Comstock', 'Comstock'), ('Middlebrook', 'Middlebrook'),
-                                                 ('Pioneer', 'Pioneer')])
-    title = StringField("Title")
-    review = TextAreaField("Review")
+                                                 ('Pioneer', 'Pioneer')],  validators =[validators.required()])
+    title = StringField("Title", validators =[validators.required()])
+    review = TextAreaField("Review", validators =[validators.required()])
     photo1 = StringField("Link to photo (optional)", validators=[URL])
     photo2 = StringField("Link to photo (optional)", validators=[URL])
     photo3 = StringField("Link to photo (optional)", validators=[URL])
