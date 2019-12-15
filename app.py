@@ -22,21 +22,21 @@ password = None
 def login_check(form, field):
     res = db.session.execute("select email from users")
     emails = res.fetchall()
-    login_email = form.email.data
+    login_email = form.field.data
     if not (login_email in emails):
         raise ValidationError("Incorrect User Name or Password")
     
 def pass_check(form, field):
     res = db.session.execute("select pass_word from users")
     passwords = res.fetchall()
-    login_password = form.password.data
+    login_password = form.field.data
     if not (login_password in passwords):
         raise ValidationError("Incorrect User Name or Password")
 
 def reg_check(form, field):
     res = db.session.execute("select email from users")
     emails = res.fetchall()
-    login_email = form.email.data
+    login_email = form.field.data
     if (login_email in emails):
         raise ValidationError("Username taken")
     
