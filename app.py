@@ -2,6 +2,7 @@
 docstring
 """
 from flask import Flask, render_template, request, g, redirect, url_for
+import flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 import requests
@@ -21,7 +22,7 @@ password = None
 results = None
 
 def set_cookie(email):
-    res=make_response()
+    res=flask.make_response()
     res.set_cookie("email", value=email)
     return res
 
