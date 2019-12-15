@@ -17,7 +17,6 @@ app = Flask(__name__)
 Bootstrap(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 db = SQLAlchemy(app)
-SESSION_PERMANENT=False
 
 def set_cookie(email):
     session['email'] = email
