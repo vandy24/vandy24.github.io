@@ -62,7 +62,7 @@ class NewPost(FlaskForm):
     review = TextAreaField("Review", validators =[validators.required()])
     photo1 = StringField("Link to photo (optional)", validators=[URL])
     photo2 = StringField("Link to photo (optional)", validators=[URL])
-    photo3 = StringField("Link to photo (optional)", validators=[URL])
+    photo3 = StringField("Link to photo (optional)", validators=[validators.URL()])
     submit = SubmitField("Post")
 
 class RegisterForm(FlaskForm):
