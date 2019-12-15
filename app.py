@@ -41,12 +41,12 @@ def reg_check(form, field):
         raise ValidationError("Username taken")
     
 class LoginForm(FlaskForm):
-    email = StringField("User Name", validators=login_check)
-    password = StringField("Password", validators=pass_check)
+    email = StringField("User Name", validators=[login_check])
+    password = StringField("Password", validators=[pass_check])
     submit = SubmitField("Login")
 
 class RegisterForm(FlaskForm):
-    remail = StringField("User Name", validators=reg_check)
+    remail = StringField("User Name", validators=[reg_check])
     rpassword = StringField("Password")
     rsubmit = SubmitField("Register")
     
