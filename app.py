@@ -46,8 +46,16 @@ def len_check_pic(form, field):
     if len(form.photo3.data)>200:
         raise ValidationError("Link too long! Max 200 characters.")
 
-def len_check_gen(form, field):
-    if len(form.field.data)>45:
+def len_check_log(form, field):
+    if len(form.email.data)>45 or len(form.password.data)>45:
+        raise ValidationError("Entry too long! Max 45 characters.")
+
+def len_check_tit(form, field):
+    if len(form.title.data)>45:
+        raise ValidationError("Entry too long! Max 45 characters.")
+
+def len_check_reg(form, field):
+    if len(form.remail.data)>45 or len(form.rpassword.data)>45:
         raise ValidationError("Entry too long! Max 45 characters.")
     
 def pass_check(form, field):
@@ -69,8 +77,8 @@ def reg_check(form, field):
         raise ValidationError("Username taken or unusable")
     
 class LoginForm(FlaskForm):
-    email = StringField("User Name", validators=[login_check, len_check_gen])
-    password = StringField("Password", validators=[pass_check, len_check_gen])
+    email = StringField("User Name", validators=[login_check, len_check_log])
+    password = StringField("Password", validators=[pass_check, len_check_log])
     submit = SubmitField("Login")
 
 class NewPost(FlaskForm):
@@ -79,7 +87,7 @@ class NewPost(FlaskForm):
                                                  ('Sanford', 'Sanford'), ('Centennial', 'Centennial'),
                                                  ('Comstock', 'Comstock'), ('Middlebrook', 'Middlebrook'),
                                                  ('Pioneer', 'Pioneer'), ('Bailey', 'Bailey')],  validators =[validators.required()])
-    title = StringField("Title", validators =[validators.required(), len_check_gen])
+    title = StringField("Title", validators =[validators.required(), len_check_tit])
     review = TextAreaField("Review", validators =[validators.required(), len_check_rev])
     photo1 = StringField("Link to photo (optional)", validators=[validators.URL(), len_check_pic])
     photo2 = StringField("Link to photo (optional)", validators=[validators.URL(), len_check_pic])
@@ -87,8 +95,8 @@ class NewPost(FlaskForm):
     submit = SubmitField("Post")
 
 class RegisterForm(FlaskForm):
-    remail = StringField("User Name", validators=[reg_check, len_check_gen])
-    rpassword = StringField("Password", validators=[len_check_gen])
+    remail = StringField("User Name", validators=[reg_check, len_check_reg])
+    rpassword = StringField("Password", validators=[len_check_reg])
     rsubmit = SubmitField("Register")
 
 class SearchForm(FlaskForm):
