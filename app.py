@@ -174,7 +174,7 @@ def new_posting():
         res = db.session.execute(query)
         posts = res.fetchall()
         print(posts)
-        ide = posts[0]+1
+        ide = posts[0][0]+1
 
         if form.photo1.data:
             query = "INSERT INTO images values ('{}', '{}');".format(form.photo1.data, ide)
