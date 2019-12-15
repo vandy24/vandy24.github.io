@@ -188,13 +188,8 @@ def new_posting():
             query = "INSERT INTO images values ('{}', '{}');".format(form.photo3.data, ide)
             db.session.execute(query)
             db.session.commit()
-
-        query = "select building from buildings where name = {}".format(form.building.data)
-        building = db.session.execute(query)
-        building = res.fetchall()
-        building[0]
         
-        query = "INSERT INTO posts VALUES ('{}', '{}', '{}', '{}', '{}', '{}');".format(email, form.title.data, form.review.data, building, ide, ide)
+        query = "INSERT INTO posts VALUES ('{}', '{}', '{}', '{}', '{}', '{}');".format(email, form.title.data, form.review.data, form.building.data, ide, ide)
         db.session.execute(query)
         db.session.commit()
         return redirect(url_for("search"))
