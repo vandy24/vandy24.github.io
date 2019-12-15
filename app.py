@@ -139,7 +139,7 @@ def search():
     print('search')
     print(email)
     print(password)
-    print(get_cookie())
+    print(get_email())
     form=SearchForm()
     return render_template("search.html", form=form)
 
