@@ -170,6 +170,7 @@ def postings_list():
             build = i[3]
             body="https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels?pp="+str(lat)+","+str(lon)+";4;"+build+"&key=AvWjYu-PKLX_yA_wjaiVhhgn8L4zISfT_zN1cpFjwLyzByKro4crRk6pOE1r8fmI"
             print(body)
+            email = i[0]
             results.append((body, title, desc, imgs, email))
     return render_template("postings_list.html", search_res=results)
 
