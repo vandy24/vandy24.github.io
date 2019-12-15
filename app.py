@@ -38,7 +38,7 @@ def len_check_rev(form, field):
     if len(form.review.data)>1000:
         raise ValidationError("Review too long! Max 1000 characters.")
 
-def len_check_rev(form, field):
+def len_check_pic(form, field):
     if len(form.photo1.data)>200:
         raise ValidationError("Link too long! Max 200 characters.")
     if len(form.photo2.data)>200:
@@ -81,9 +81,9 @@ class NewPost(FlaskForm):
                                                  ('Pioneer', 'Pioneer'), ('Bailey', 'Bailey')],  validators =[validators.required()])
     title = StringField("Title", validators =[validators.required(), len_check_gen])
     review = TextAreaField("Review", validators =[validators.required(), len_check_rev])
-    photo1 = StringField("Link to photo (optional)", validators=[validators.URL(), len_check_rev])
-    photo2 = StringField("Link to photo (optional)", validators=[validators.URL(), len_check_rev])
-    photo3 = StringField("Link to photo (optional)", validators=[validators.URL(), len_check_rev])
+    photo1 = StringField("Link to photo (optional)", validators=[validators.URL(), len_check_pic])
+    photo2 = StringField("Link to photo (optional)", validators=[validators.URL(), len_check_pic])
+    photo3 = StringField("Link to photo (optional)", validators=[validators.URL(), len_check_pic])
     submit = SubmitField("Post")
 
 class RegisterForm(FlaskForm):
