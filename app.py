@@ -30,7 +30,7 @@ def get_email():
     cookies=request.cookies
     print('cookies')
     print(cookies)
-    username = cookies
+    username = cookies.get('email')
     return username
 
 def logout():
@@ -139,6 +139,7 @@ def search():
     print('search')
     print(email)
     print(password)
+    print(get_cookie())
     form=SearchForm()
     return render_template("search.html", form=form)
 
