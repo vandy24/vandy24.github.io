@@ -140,6 +140,8 @@ def postings_list():
     posts = res.fetchall()
     body=''
     results=[]
+    print('posts')
+    print(posts)
     for i in posts:
         if query.lower() in i[1].lower() or query.lower() in i[3].lower() or query.lower() in i[2].lower():
             upload_id = i[4]
