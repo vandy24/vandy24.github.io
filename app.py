@@ -133,9 +133,10 @@ def postings_list():
     for i in posts:
         if query.lower() in i[1].lower() or query.lower() in i[3].lower() or query.lower() in i[2].lower():
             upload_id = i[4]
-            query = "select url from imgs where upload_id = {}".format(upload_id)
+            query = "select url from images where upload_id = {}".format(upload_id)
             res = db.session.execute(query)
             imgs = res.fetchall()
+            print('Images {}'.format(imgs))
             for i in range(len(imgs)):
                 imgs[i] = imgs[i][0]
             lat = i[6]
@@ -152,11 +153,14 @@ def postings_list():
 def new_posting():
     global email
     global password
+    print(email)
+    print(password)
     form = NewPost()
     if form.title.data and form.review.data and form.building.data:
         query = "select id from posts order by desc limit 1"
         posts = db.session.execute(query)
         posts = res.fetchall()
+        print(posts)
         ide = posts[0]+1
 
         if form.photo1.data:
