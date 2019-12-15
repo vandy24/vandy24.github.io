@@ -20,9 +20,9 @@
 		</tr>
 		{% for result in search_res: %}
 		<tr>
-			<td><div class = "limit_height">{{result[4]}}</div></td>
-			<td><div class = "limit_height">{{result[1]}}<br>{{result[2]}}</div></td>
-			<td id="image_cell"><div class = "limit_height"><img src={{result[0]}}>
+			<td class = "username_cell"><div class = "limit_height">{{result[4]}}</div></td>
+			<td class = "review_cell"><div class = "limit_height">{{result[1]}}<br>{{result[2]}}</div></td>
+			<td class="image_cell"><div class = "limit_height"><img src={{result[0]}}>
 			{% for img in result[3]: %}
 				<img src={{img}}></img>
 			{% endfor %}

@@ -56,12 +56,19 @@
 		text-align: center;
 		border: 5px solid black;
 	}
-	#image_cell{
+	.image_cell{
 		width: 25%;
 		overflow: auto;
 	}
 	.limit_height{
-		height: 15%;
+		height: 400px;
+		overflow: auto;
+	}
+	.username_cell{
+		width:10%;
+		overflow: auto;
+	}
+	.review_cell{
 		overflow: auto;
 	}
 </style>
