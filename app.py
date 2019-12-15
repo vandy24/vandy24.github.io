@@ -143,7 +143,7 @@ def postings_list():
     print('posts')
     print(posts)
     for i in posts:
-        if query_orig.lower() in i[1].lower() or query.lower() in i[3].lower() or query.lower() in i[2].lower():
+        if query_orig.lower() in i[1].lower() or query_orig.lower() in i[3].lower() or query_orig.lower() in i[2].lower():
             upload_id = i[4]
             query = "select url from images where upload_id = {}".format(upload_id)
             res = db.session.execute(query)
