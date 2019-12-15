@@ -3,7 +3,6 @@ docstring
 """
 from flask import Flask, render_template, request, g, redirect, url_for, session
 import flask
-import validators
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 import requests
@@ -38,6 +37,14 @@ def login_check(form, field):
 def len_check_rev(form, field):
     if len(form.review.data)>1000:
         raise ValidationError("Review too long! Max 1000 characters.")
+
+def len_check_rev(form, field):
+    if len(form.photo1.data)>200:
+        raise ValidationError("Link too long! Max 200 characters.")
+    if len(form.photo2.data)>200:
+        raise ValidationError("Link too long! Max 200 characters.")
+    if len(form.photo3.data)>200:
+        raise ValidationError("Link too long! Max 200 characters.")
 
 def len_check_gen(form, field):
     if len(form.review.data)>45:
@@ -74,9 +81,9 @@ class NewPost(FlaskForm):
                                                  ('Pioneer', 'Pioneer'), ('Bailey', 'Bailey')],  validators =[validators.required()])
     title = StringField("Title", validators =[validators.required(), len_check_gen])
     review = TextAreaField("Review", validators =[validators.required(), len_check_rev])
-    photo1 = StringField("Link to photo (optional)", validators=[validators.url()])
-    photo2 = StringField("Link to photo (optional)", validators=[validators.url()])
-    photo3 = StringField("Link to photo (optional)", validators=[validators.url()])
+    photo1 = StringField("Link to photo (optional)", validators=[validators.URL(), len_check_rev])
+    photo2 = StringField("Link to photo (optional)", validators=[validators.URL(), len_check_rev])
+    photo3 = StringField("Link to photo (optional)", validators=[validators.URL(), len_check_rev])
     submit = SubmitField("Post")
 
 class RegisterForm(FlaskForm):
