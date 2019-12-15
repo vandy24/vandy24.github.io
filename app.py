@@ -181,6 +181,7 @@ def new_posting():
     global password
     print(email)
     print(password)
+    email=get_email()
     form = NewPost()
     if form.title.data and form.review.data and form.building.data:
         query = "select id from posts order by desc limit 1"

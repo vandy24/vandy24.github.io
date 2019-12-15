@@ -12,15 +12,20 @@
 
 <body>
 	<table id="results"><tbody>
+		<tr>
+			<td>Username</td>
+			<td>Review</td>
+			<td>Photos</td>
+		</tr>
 		{% for result in search_res: %}
 		<tr>
 			<td>{{result[4]}}</td>
-			<td><img src={{result[0]}}></td>
-			<td>{{result[1]}}</td>
-			<td>{{result[2]}}</td>
+			<td>{{result[1]}}<br>{{result[2]}}</td>
+			<td><img src={{result[0]}}>
 			{% for img in search_res[3]: %}
-				<td><img src={{img}}></img></td>
+				<img src={{img}}></img>
 			{% endfor %}
+			</td>
 		</tr>
 		{% endfor %}
 	</tbody></table>
