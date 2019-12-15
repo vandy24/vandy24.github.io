@@ -1,0 +1,23 @@
+{% extends "bootstrap/base.html" %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+    <h1>Search</h1>
+    <form action="/new_posting" method='post'>
+        {{ form.hidden_tag() }}
+        {{ render_field(form.building) }}
+        <br />
+		{{ render_field(form.title) }}
+		<br />
+		{{ render_field(form.review) }}
+		<br />
+		{{ render_field(form.photo1) }}
+		<br />
+		{{ render_field(form.photo2) }}
+		<br />
+		{{ render_field(form.photo3) }}
+		<br />
+        {{form.submit()}}
+    </form>
+	
+{% endblock %}

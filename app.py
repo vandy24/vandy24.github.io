@@ -52,6 +52,19 @@ class LoginForm(FlaskForm):
     password = StringField("Password", validators=[pass_check])
     submit = SubmitField("Login")
 
+class NewPost(FlaskForm):
+    building = SelectField("Building",  choices=[('17th', '17th'),
+                                                 ('Territorial', 'Territorial'), ('Frontier', 'Frontier'),
+                                                 ('Sanford', 'Sanford'), ('Centennial', 'Centennial'),
+                                                 ('Comstock', 'Comstock'), ('Middlebrook', 'Middlebrook'),
+                                                 ('Pioneer', 'Pioneer')])
+    title = StringField("Title")
+    review = TextAreaField("Review")
+    photo1 = StringField("Link to photo (optional)", validators=[URL])
+    photo2 = StringField("Link to photo (optional)", validators=[URL])
+    photo3 = StringField("Link to photo (optional)", validators=[URL])
+    submit = SubmitField("Post")
+
 class RegisterForm(FlaskForm):
     remail = StringField("User Name", validators=[reg_check])
     rpassword = StringField("Password")
@@ -93,39 +106,21 @@ def login():
         return redirect(url_for("search"))
     else: return render_template("login.html", form=form, reg=reg)
 
-##@app.route('/search', methods=['GET', 'POST'])
-##def search():
-##    global results
-##    global email
-##    global password
-##    form = LoginForm()
-##    reg = RegisterForm()
-##    login_email = form.email.data
-##    login_password = form.password.data
-##    reg_email = reg.remail.data
-##    reg_password = reg.rpassword.data
-##    print(email)
-##    print(password)
-##    if form.validate_on_submit() and login_email and login_password or email:
-##        email = form.email.data
-##        password = form.password.data
-##    elif reg.validate_on_submit() and reg_email and reg_password or email:
-##        email = reg.remail.data
-##        password = reg.rpassword.data
-##        res = db.session.execute("select email from users")
-##        emails = res.fetchall()
-##        query = "INSERT INTO users VALUES ('{}', '{}');".format(email, password)
-##        db.session.execute(query)
-##        db.session.commit()
-##    else: return render_template("login.html", form=form, reg=reg)
+
         
 @app.route('/search', methods=['GET', 'POST'])
 def search():
+    print(email)
+    print(password)
     form=SearchForm()
     return render_template("search.html", form=form)
 
 @app.route('/postings_list', methods=['GET', 'POST'])
 def postings_list():
+    global email
+    global password
+    print(email)
+    print(password)
     form=SearchForm()
     print(form.search.data)
     print(bool(form.validate_on_submit()))
@@ -153,22 +148,65 @@ def postings_list():
     return render_template("postings_list.html", search_res=results)
 
 
-                
-##def citylist(c_code):
-##    res = db.session.execute('select * from city where countrycode = :ccode',
-##                             {'ccode': c_code})
-##    return render_template('cities.html', cities=res.fetchall(),
-##                           columns=res.keys())
+@app.route('/new_posting', methods=['GET', 'POST'])
+def new_posting():
+    global email
+    global password
+    form = NewPost()
+    if form.title.data and form.review.data and form.building.data:
+        query = "select id from posts order by desc limit 1"
+        posts = db.session.execute(query)
+        posts = res.fetchall()
+        ide = posts[0]+1
 
-##@app.route('/continent')
-##@login_required
-##def countries_by_continent():
-##    continent = request.args['selected_continent']
-##    res = db.session.execute('select * from country where continent = :cont order by name',
-##                             {'cont': continent})
-##    c_list = res.fetchall()
-##
-##    return render_template('country_boot.html',
-##                           countries=c_list,
-##                           continents=[],
-##                           columns=res.keys())
+        if form.photo1.data:
+            query = "INSERT INTO posts images ('{}', '{}');".format(form.photo1.data, ide)
+            db.session.execute(query)
+            db.session.commit()
+        if form.photo2.data:
+            query = "INSERT INTO posts images ('{}', '{}');".format(form.photo2.data, ide)
+            db.session.execute(query)
+            db.session.commit()
+        if form.photo3.data:
+            query = "INSERT INTO posts images ('{}', '{}');".format(form.photo3.data, ide)
+            db.session.execute(query)
+            db.session.commit()
+
+        query = "select building from buildings where name = {}".format(form.building.data)
+        building = db.session.execute(query)
+        building = res.fetchall()
+        building[0]
+        
+        query = "INSERT INTO posts VALUES ('{}', '{}', '{}', '{}', '{}', '{}');".format(email, form.title.data, form.review.data, building, ide, ide)
+        res = db.session.execute("select * from posts join buildings on posts.building = buildings.building")
+        db.session.execute(query)
+        db.session.commit()
+        return redirect(url_for("search"))
+    return render_template("new_post.html", form = form)
+
+                
+##@app.route('/search', methods=['GET', 'POST'])
+##def search():
+##    global results
+##    global email
+##    global password
+##    form = LoginForm()
+##    reg = RegisterForm()
+##    login_email = form.email.data
+##    login_password = form.password.data
+##    reg_email = reg.remail.data
+##    reg_password = reg.rpassword.data
+##    print(email)
+##    print(password)
+##    if form.validate_on_submit() and login_email and login_password or email:
+##        email = form.email.data
+##        password = form.password.data
+##    elif reg.validate_on_submit() and reg_email and reg_password or email:
+##        email = reg.remail.data
+##        password = reg.rpassword.data
+##        res = db.session.execute("select email from users")
+##        emails = res.fetchall()
+##        query = "INSERT INTO users VALUES ('{}', '{}');".format(email, password)
+##        db.session.execute(query)
+##        db.session.commit()
+##    else: return render_template("login.html", form=form, reg=reg)
