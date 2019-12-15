@@ -81,6 +81,7 @@ def login():
     if form.validate_on_submit() and login_email and login_password or email:
         email = form.email.data
         password = form.password.data
+        redirect(url_for("search"))
     elif reg.validate_on_submit() and reg_email and reg_password or email:
         email = reg.remail.data
         password = reg.rpassword.data
@@ -89,6 +90,7 @@ def login():
         query = "INSERT INTO users VALUES ('{}', '{}');".format(email, password)
         db.session.execute(query)
         db.session.commit()
+        redirect(url_for("search"))
     else: return render_template("login.html", form=form, reg=reg)
 
 ##@app.route('/search', methods=['GET', 'POST'])
