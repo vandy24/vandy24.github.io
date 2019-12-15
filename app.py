@@ -60,8 +60,8 @@ class NewPost(FlaskForm):
                                                  ('Pioneer', 'Pioneer')],  validators =[validators.required()])
     title = StringField("Title", validators =[validators.required()])
     review = TextAreaField("Review", validators =[validators.required()])
-    photo1 = StringField("Link to photo (optional)", validators=[validators.URL()]])
-    photo2 = StringField("Link to photo (optional)", validators=[validators.URL()]])
+    photo1 = StringField("Link to photo (optional)", validators=[validators.URL()])
+    photo2 = StringField("Link to photo (optional)", validators=[validators.URL()])
     photo3 = StringField("Link to photo (optional)", validators=[validators.URL()])
     submit = SubmitField("Post")
 
