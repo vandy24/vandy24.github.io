@@ -2,8 +2,10 @@
 {% from "_formhelpers.html" import render_field %}
 
 {% block content %}
-    <a href="/search">New Search</a>
-	<a href="/logout">Log Out</a>
+	<h1>UMN Dorm Reviews</h1>
+	<br>
+    <a class="nav_buttons" href="/search">New Search</a>
+	<a class="nav_buttons" href="/logout">Log Out</a>
 	
 <HEAD>
 	<title>Building Reviews</title>
@@ -21,7 +23,7 @@
 		{% for result in search_res: %}
 		<tr>
 			<td class = "username_cell"><div class = "limit_height">{{result[4]}}</div></td>
-			<td class = "review_cell"><div class = "limit_height">{{result[1]}}<br>{{result[2]}}</div></td>
+			<td class = "review_cell"><div class = "limit_height"><b>{{result[1]}}</b><br> <br>{{result[2]}}</div></td>
 			<td class="image_cell"><div class = "limit_height"><img src={{result[0]}}>
 			{% for img in result[3]: %}
 				<img src={{img}}></img>

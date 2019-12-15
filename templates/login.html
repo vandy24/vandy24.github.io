@@ -3,6 +3,7 @@
 
 {% block content %}
     <h1>Login</h1>
+	<link rel="stylesheet" type="text/css" href="/static/mashup.css">
     <form action="/" method='post'>
         {{ form.hidden_tag() }}
         {{ render_field(form.email) }}

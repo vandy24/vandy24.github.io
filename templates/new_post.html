@@ -2,8 +2,9 @@
 {% from "_formhelpers.html" import render_field %}
 
 {% block content %}
-    <a href="/search">New Search</a>
-	<a href="/logout">Log Out</a>
+	<link rel="stylesheet" type="text/css" href="/static/mashup.css">
+    <a class="nav_buttons" href="/search">New Search</a>
+	<a class="nav_buttons" href="/logout">Log Out</a>
     <form action="/new_posting" method='post'>
         {{ form.hidden_tag() }}
         {{ render_field(form.building) }}

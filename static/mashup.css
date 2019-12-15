@@ -71,4 +71,7 @@
 	.review_cell{
 		overflow: auto;
 	}
+	.nav_buttons{
+		text-align: center;
+	}
 </style>
