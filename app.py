@@ -184,7 +184,7 @@ def new_posting():
     print(password)
     form = NewPost()
     if form.title.data and form.review.data and form.building.data:
-        query = "select id from posts order by desc limit 1"
+        query = "select id from posts order by id desc limit 1"
         posts = db.session.execute(query)
         posts = res.fetchall()
         print(posts)
