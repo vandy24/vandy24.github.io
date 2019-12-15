@@ -4,9 +4,12 @@
 {% block content %}
 <body>
 	<link rel="stylesheet" type="text/css" href="/static/mashup.css">
+	<br>
 	<h1>UMN Dorm Reviews</h1>
     <a class="nav_buttons" href="/search">New Search</a>
 	<a class="nav_buttons" href="/logout">Log Out</a>
+	<br>
+	<br>
     <form action="/new_posting" method='post'>
         {{ form.hidden_tag() }}
         {{ render_field(form.building) }}
