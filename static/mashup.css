@@ -40,4 +40,7 @@
 		padding:5px;
 		background-color: white;
 	}
+	.error{
+		list-style-type: none;
+	}
 </style>
