@@ -25,7 +25,7 @@ def login_check(form, field):
     login_email = form.email.data
     for i in range(len(emails)):
         emails[i] = emails[i][0]
-    if (not login_email in emails) and login_email:
+    if not login_email in emails and login_email:
         raise ValidationError("Incorrect User Name or Password")
     
 def pass_check(form, field):
@@ -34,7 +34,7 @@ def pass_check(form, field):
     login_password = form.password.data
     for i in range(len(passwords)):
         passwords[i] = passwords[i][0]
-    if (not login_password in passwords) and login_password:
+    if not login_password in passwords and login_password:
         raise ValidationError("Incorrect User Name or Password")
 
 def reg_check(form, field):
@@ -85,8 +85,6 @@ def login():
         db.session.commit()
         return redirect(url_for('login'))
     else: return render_template("login.html", form=form, reg=reg)
-
-@app.route('/search', methods=['GET', 'POST'])
 
 ##@app.route('/index')
 ##def citylist(c_code):
