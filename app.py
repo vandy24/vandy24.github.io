@@ -3,6 +3,7 @@ docstring
 """
 from flask import Flask, render_template, request, g, redirect, url_for, session
 import flask
+import validators
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 import requests
@@ -80,7 +81,7 @@ class NewPost(FlaskForm):
 
 class RegisterForm(FlaskForm):
     remail = StringField("User Name", validators=[reg_check, len_check_gen])
-    rpassword = StringField("Password", validators=[len_check_gen]))
+    rpassword = StringField("Password", validators=[len_check_gen])
     rsubmit = SubmitField("Register")
 
 class SearchForm(FlaskForm):
