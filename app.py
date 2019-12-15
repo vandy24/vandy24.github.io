@@ -160,6 +160,8 @@ def postings_list():
             print(body)
             email = i[0]
             results.append((body, title, desc, imgs, email))
+    print('results')
+    print(results)
     return render_template("postings_list.html", search_res=results)
 
 
