@@ -1,0 +1,28 @@
+{% extends "bootstrap/base.html" %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+    <a href="/search">New Search</a>
+	
+<HEAD>
+	<title>Building Reviews</title>
+	<link rel="stylesheet" type="text/css" href="/static/mashup.css">
+	<script src="/static/mashup.js"></script>
+</HEAD>
+
+<body>
+	<table id="results"><tbody>
+		{% for result in search_res: %}
+		<tr>
+			<td><img src={{result[0]}}></td>
+			<td>{{result[1]}}</td>
+			<td>{{result[2]}}</td>
+			{% for img in search_res[3]: %}
+				<td><img src={{img}}></img></td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+	</tbody></table>
+ </body>
+	
+{% endblock %}

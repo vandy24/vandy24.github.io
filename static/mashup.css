@@ -1,0 +1,59 @@
+<style>
+{}
+	#Title{
+		font-family: arial;
+		font-size: 20px;
+		display:floating;
+		text-align: center;
+		z-index:2;}
+	#instructions{
+		text-align: center;
+	}
+	header{
+		font-family: arial;
+		font-size: 15px;
+		z-index:1;
+		background-color: cadetblue;
+		width:100%;
+	}
+    #headerbody {
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20% 20%;
+    }	
+	#headerbody>* {
+        text-align: center;
+    }	
+	body{
+		background-image: linear-gradient(to right, #D43D1A, #E04006);
+		}
+		
+	img{width: 100%;}
+	#doublesize{width: 200%;}
+	
+	.half_table{
+		border: 0px solid black;
+		colspan="4";
+	}
+	
+	#section {
+        display: grid;
+        grid-template-columns: 50% 50%;
+		text-align: center;
+		font-family: sans-serif;
+		font-size: 30px;
+		color: red;
+    }
+	th, td {
+		padding:5px;
+		border: 5px solid black;
+	}
+	.no_outline{
+		border: 0px solid black;
+	}
+	#results{
+		font-size: 20px;
+		color: white;
+		text-align: center;
+		border: 5px solid black;
+
+</style>

@@ -18,6 +18,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 db = SQLAlchemy(app)
 email = None
 password = None
+results= None
 
 def login_check(form, field):
     res = db.session.execute("select email from users")
@@ -71,32 +72,6 @@ def login():
     global password
     form = LoginForm()
     reg = RegisterForm()
-    return render_template("login.html", form=form, reg=reg)
-##    login_email = form.email.data
-##    login_password = form.password.data
-##    reg_email = reg.remail.data
-##    reg_password = reg.rpassword.data
-##    if form.validate_on_submit() and login_email and login_password:
-##        email = form.email.data
-##        password = form.password.data
-##        return render_template("login.html", form=form, reg = reg)
-##    elif reg.validate_on_submit() and reg_email and reg_password:
-##        email = reg.remail.data
-##        password = reg.rpassword.data
-##        res = db.session.execute("select email from users")
-##        emails = res.fetchall()
-##        query = "INSERT INTO users VALUES ('{}', '{}');".format(email, password)
-##        db.session.execute(query)
-##        db.session.commit()
-##        return redirect(url_for('login'))
-##    else: return render_template("login.html", form=form, reg=reg)
-
-@app.route('/search', methods=['GET', 'POST'])
-def search():
-    global email
-    global password
-    form = LoginForm()
-    reg = RegisterForm()
     login_email = form.email.data
     login_password = form.password.data
     reg_email = reg.remail.data
@@ -115,27 +90,66 @@ def search():
         db.session.execute(query)
         db.session.commit()
     else: return render_template("login.html", form=form, reg=reg)
-    
+
+##@app.route('/search', methods=['GET', 'POST'])
+##def search():
+##    global results
+##    global email
+##    global password
+##    form = LoginForm()
+##    reg = RegisterForm()
+##    login_email = form.email.data
+##    login_password = form.password.data
+##    reg_email = reg.remail.data
+##    reg_password = reg.rpassword.data
+##    print(email)
+##    print(password)
+##    if form.validate_on_submit() and login_email and login_password or email:
+##        email = form.email.data
+##        password = form.password.data
+##    elif reg.validate_on_submit() and reg_email and reg_password or email:
+##        email = reg.remail.data
+##        password = reg.rpassword.data
+##        res = db.session.execute("select email from users")
+##        emails = res.fetchall()
+##        query = "INSERT INTO users VALUES ('{}', '{}');".format(email, password)
+##        db.session.execute(query)
+##        db.session.commit()
+##    else: return render_template("login.html", form=form, reg=reg)
+        
+@app.route('/postings_list', methods=['GET', 'POST'])
+def search():
+    form=SearchForm()
+    return render_template("search.html", form=form)
+
+@app.route('/postings_list', methods=['GET', 'POST'])
+def postings_list():
     form=SearchForm()
     print(form.search.data)
     print(bool(form.validate_on_submit()))
-    if form.validate_on_submit():
-        results=[]
-        query = form.search.data
-        res = db.session.execute("select * from postings")
-        postings = res.fetchall()
-        for posting in postings:
-            if query == '':
-                results = postings
-                break
-            if query in posting[1] or query in posting[2]:
-                results.append(posting)
-        print(results)
-        #return render_template("posting_list.html", postings = results)
-    print('here')
-    return render_template("search.html", form=form)
-        
-        
+    query = form.search.data
+    res = db.session.execute("select * from posts join buildings on posts.building = buildings.building")
+    posts = res.fetchall()
+    print(posts)
+    body=''
+    results=[]
+    for i in posts:
+        if query.lower() in i[1].lower():
+            upload_id = i[4]
+            query = "select url from imgs where upload_id = {}".format(upload_id)
+            res = db.session.execute(query)
+            imgs = res.fetchall()
+            for i in range(len(imgs)):
+                imgs[i] = imgs[i][0]
+            lat = i[6]
+            lat = i[7]
+            title = i[1]
+            desc = i[2]
+            body="https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels?pp="+lat+","+lon+";4;"+title
+            body+="&key=AvWjYu-PKLX_yA_wjaiVhhgn8L4zISfT_zN1cpFjwLyzByKro4crRk6pOE1r8fmI"
+            results.append((body, title, desc, imgs))
+    return render_template("postings_list.html", search_res=results)
+                
 ##def citylist(c_code):
 ##    res = db.session.execute('select * from city where countrycode = :ccode',
 ##                             {'ccode': c_code})
