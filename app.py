@@ -142,7 +142,7 @@ def postings_list():
             for i in range(len(imgs)):
                 imgs[i] = imgs[i][0]
             lat = i[6]
-            lat = i[7]
+            lon = i[7]
             title = i[1]
             desc = i[2]
             body="https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels?pp="+str(lat)+","+str(lon)+";4;"+title
