@@ -21,11 +21,16 @@ email = None
 password = None
 results = None
 
-def set_cookie(email):
+def set_cookies(email):
     res=flask.make_response("Hello World")
     res.set_cookie("email", value=email, domain='127.0.0.1')
     return res, 200
 
+def set_cookie(email):
+    set_cookies(email)
+    username = request.cookies.get('email')
+    print(username)
+    
 def get_email():
     cookies=request.cookies
     print('cookies')
