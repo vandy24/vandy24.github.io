@@ -23,7 +23,7 @@ def login_check(form, field):
     res = db.session.execute("select email from users")
     emails = res.fetchall()
     login_email = form.email.data
-    for i in emails:
+    for i in len(emails):
         emails[i] = emails[i][0]
     if not (login_email in emails):
         raise ValidationError("Incorrect User Name or Password")
@@ -32,7 +32,7 @@ def pass_check(form, field):
     res = db.session.execute("select pass_word from users")
     passwords = res.fetchall()
     login_password = form.password.data
-    for i in passwords:
+    for i in len(passwords):
         passwords[i] = passwords[i][0]
     if not (login_password in passwords):
         raise ValidationError("Incorrect User Name or Password")
@@ -41,7 +41,7 @@ def reg_check(form, field):
     res = db.session.execute("select email from users")
     emails = res.fetchall()
     login_email = form.remail.data
-    for i in emails:
+    for i in len(emails):
         emails[i] = emails[i][0]
     if (login_email in emails and login_email):
         raise ValidationError("Username taken")
