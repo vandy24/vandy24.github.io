@@ -110,8 +110,10 @@ def login():
         
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    print(email)
-    print(password)
+    global email
+    global password
+    print(global email)
+    print(global password)
     form=SearchForm()
     return render_template("search.html", form=form)
 
@@ -143,7 +145,7 @@ def postings_list():
             lat = i[7]
             title = i[1]
             desc = i[2]
-            body="https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels?pp="+lat+","+lon+";4;"+title
+            body="https://dev.virtualearth.net/REST/v1/Imagery/Map/AerialWithLabels?pp="+str(lat)+","+str(lon)+";4;"+title
             body+="&key=AvWjYu-PKLX_yA_wjaiVhhgn8L4zISfT_zN1cpFjwLyzByKro4crRk6pOE1r8fmI"
             results.append((body, title, desc, imgs))
     return render_template("postings_list.html", search_res=results)
