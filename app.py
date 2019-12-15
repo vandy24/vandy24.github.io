@@ -30,6 +30,7 @@ def get_email():
     session = requests.Session()
     cookies=session.cookies.get_dict()
     username = cookies.get('email')
+    return username
 
 def logout():
     res=flask.make_response()
@@ -106,6 +107,7 @@ def login():
     login_password = form.password.data
     reg_email = reg.remail.data
     reg_password = reg.rpassword.data
+    print('login')
     print(email)
     print(password)
     if get_email():
@@ -133,6 +135,7 @@ def login():
 def search():
     global email
     global password
+    print('search')
     print(email)
     print(password)
     form=SearchForm()
@@ -143,6 +146,7 @@ def postings_list():
     global email
     global password
     email = get_email()
+    print('posting_list')
     print(email)
     print(password)
     form=SearchForm()
@@ -180,6 +184,7 @@ def new_posting():
     global email
     global password
     email=get_email()
+    print('new_posting')
     print(email)
     print(password)
     form = NewPost()
