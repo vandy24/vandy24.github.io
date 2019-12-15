@@ -57,7 +57,6 @@ csrf.init_app(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
-    
     global email
     global password
     form = LoginForm()
@@ -86,7 +85,6 @@ def login():
         passwords = res.fetchall()
         if not (email in emails and password in passwords):
             return redirect(url_for('login')) #render_template("login.html", form=form, reg=reg)
-
     if reg.validate_on_submit() and reg_email and reg_password:
         print('2')
         print(login_email)
@@ -103,7 +101,7 @@ def login():
             db.session.execute(query)
             db.session.commit()
             return redirect(url_for('login'))
-        else: return render_template("login.html", form=form, reg=reg)
+    else: return render_template("login.html", form=form, reg=reg)
 
 ##@app.route('/index')
 ##def citylist(c_code):
