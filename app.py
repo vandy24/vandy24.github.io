@@ -117,7 +117,7 @@ def login():
 ##        db.session.commit()
 ##    else: return render_template("login.html", form=form, reg=reg)
         
-@app.route('/postings_list', methods=['GET', 'POST'])
+@app.route('/searcht', methods=['GET', 'POST'])
 def search():
     form=SearchForm()
     return render_template("search.html", form=form)
