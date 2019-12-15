@@ -60,7 +60,7 @@
 		width: 25%;
 		overflow: auto;
 	}
-	#limit_height{
+	.limit_height{
 		height: 15%;
 		overflow: auto;
 	}
