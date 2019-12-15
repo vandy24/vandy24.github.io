@@ -19,7 +19,7 @@
 			<td>Photos</td>
 		</tr>
 		{% for result in search_res: %}
-		<tr>
+		<tr><div id = "limit_height">
 			<td>{{result[4]}}</td>
 			<td>{{result[1]}}<br>{{result[2]}}</td>
 			<td id="image_cell"><img src={{result[0]}}>
@@ -27,7 +27,7 @@
 				<img src={{img}}></img>
 			{% endfor %}
 			</td>
-		</tr>
+		</div></tr>
 		{% endfor %}
 	</tbody></table>
  </body>

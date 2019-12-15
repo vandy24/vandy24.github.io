@@ -27,7 +27,7 @@
 		background-image: linear-gradient(to right, #D43D1A, #E04006);
 		}
 		
-	img{width: 15%;}
+	img{width: 100%;}
 	#doublesize{width: 200%;}
 	
 	.half_table{
@@ -57,7 +57,11 @@
 		border: 5px solid black;
 	}
 	#image_cell{
-		width: 15%;
+		width: 25%;
+		overflow: scroll;
+	}
+	#limit_height{
+		height: 15%;
 		overflow: scroll;
 	}
 </style>
