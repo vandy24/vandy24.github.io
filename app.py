@@ -135,7 +135,7 @@ def postings_list():
     print('posting_list')
     print(email)
     form=SearchForm()
-    query = form.search.data
+    query_orig = form.search.data
     res = db.session.execute("select * from posts join buildings on posts.building = buildings.name")
     posts = res.fetchall()
     body=''
@@ -143,13 +143,7 @@ def postings_list():
     print('posts')
     print(posts)
     for i in posts:
-        print('post')
-        print(i)
-        print(query.lower())
-        print(i[1].lower())
-        print(i[2].lower())
-        print(i[3].lower())
-        if query.lower() in i[1].lower() or query.lower() in i[3].lower() or query.lower() in i[2].lower():
+        if query_orig.lower() in i[1].lower() or query.lower() in i[3].lower() or query.lower() in i[2].lower():
             upload_id = i[4]
             query = "select url from images where upload_id = {}".format(upload_id)
             res = db.session.execute(query)
