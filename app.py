@@ -78,7 +78,7 @@ def login():
     if form.validate_on_submit() and login_email and login_password:
         email = form.email.data
         password = form.password.data
-        return render_template("search.html", form=SearchForm())
+        return render_template("login.html", form=form, reg = reg)
     elif reg.validate_on_submit() and reg_email and reg_password:
         email = reg.remail.data
         password = reg.rpassword.data
