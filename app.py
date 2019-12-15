@@ -18,6 +18,10 @@ Bootstrap(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 db = SQLAlchemy(app)
 
+csrf = CSRFProtect()
+app.config["SECRET_KEY"] = "row the boat"
+csrf.init_app(app)
+
 def set_cookie(email):
     session['email'] = email
     return email
@@ -102,14 +106,10 @@ class RegisterForm(FlaskForm):
 class SearchForm(FlaskForm):
     search = StringField("Search")
     submit = SubmitField("Go!")
-    
-csrf = CSRFProtect()
-app.config["SECRET_KEY"] = "row the boat"
-csrf.init_app(app)
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
-    session['email'] = None
+    session.['email'] = None
     return redirect(url_for("login"))
 
 @app.route('/', methods=['GET', 'POST'])
@@ -146,14 +146,14 @@ def login():
         
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    if not session['email']:
+    if not session.get('email'):
         return redirect(url_for("login"))
     form=SearchForm()
     return render_template("search.html", form=form)
 
 @app.route('/postings_list', methods=['GET', 'POST'])
 def postings_list():
-    if not session['email']:
+    if not session.get('email'):
         return redirect(url_for("login"))
     email = get_email()
     print('posting_list')
@@ -191,7 +191,7 @@ def postings_list():
 
 @app.route('/new_posting', methods=['GET', 'POST'])
 def new_posting():
-    if not session['email']:
+    if not session.get('email'):
         return redirect(url_for("login"))
     email=get_email()
     print('new_posting')
@@ -222,30 +222,3 @@ def new_posting():
         db.session.commit()
         return redirect(url_for("search"))
     return render_template("new_post.html", form = form)
-
-                
-##@app.route('/search', methods=['GET', 'POST'])
-##def search():
-##    global results
-##    global email
-##    global password
-##    form = LoginForm()
-##    reg = RegisterForm()
-##    login_email = form.email.data
-##    login_password = form.password.data
-##    reg_email = reg.remail.data
-##    reg_password = reg.rpassword.data
-##    print(email)
-##    print(password)
-##    if form.validate_on_submit() and login_email and login_password or email:
-##        email = form.email.data
-##        password = form.password.data
-##    elif reg.validate_on_submit() and reg_email and reg_password or email:
-##        email = reg.remail.data
-##        password = reg.rpassword.data
-##        res = db.session.execute("select email from users")
-##        emails = res.fetchall()
-##        query = "INSERT INTO users VALUES ('{}', '{}');".format(email, password)
-##        db.session.execute(query)
-##        db.session.commit()
-##    else: return render_template("login.html", form=form, reg=reg)
