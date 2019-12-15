@@ -17,9 +17,6 @@ app = Flask(__name__)
 Bootstrap(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 db = SQLAlchemy(app)
-email = None
-password = None
-results = None
 
 def set_cookie(email):
     session['email'] = email
@@ -28,17 +25,13 @@ def set_cookie(email):
 def get_email():
     username = session.get('email', None)
     return username
-
-def logout():
-    session['email'] = None
     
 def login_check(form, field):
-    res = db.session.execute("select email from users")
+    res = db.session.execute("select * from users")
     emails = res.fetchall()
     login_email = form.email.data
-    for i in range(len(emails)):
-        emails[i] = emails[i][0]
-    if not login_email in emails or not login_email:
+    password = form.password.data
+    if not (login_email, password) in emails or not login_email:
         raise ValidationError("Incorrect User Name or Password")
     
 def pass_check(form, field):
@@ -90,11 +83,13 @@ csrf = CSRFProtect()
 app.config["SECRET_KEY"] = "row the boat"
 csrf.init_app(app)
 
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    session['email'] = None
+    return redirect(url_for("login"))
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
-    global email
-    global password
     email = get_email()
     form = LoginForm()
     reg = RegisterForm()
@@ -104,7 +99,6 @@ def login():
     reg_password = reg.rpassword.data
     print('login')
     print(email)
-    print(password)
     if get_email():
         return redirect(url_for("search"))
     if form.validate_on_submit() and login_email and login_password or email:
@@ -128,30 +122,22 @@ def login():
         
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    global email
-    global password
-    print('search')
-    print(email)
-    print(password)
-    print(get_email())
+    if not session['email']:
+        return redirect(url_for("login"))
     form=SearchForm()
     return render_template("search.html", form=form)
 
 @app.route('/postings_list', methods=['GET', 'POST'])
 def postings_list():
-    global email
-    global password
+    if not session['email']:
+        return redirect(url_for("login"))
     email = get_email()
     print('posting_list')
     print(email)
-    print(password)
     form=SearchForm()
-    print(form.search.data)
-    print(bool(form.validate_on_submit()))
     query = form.search.data
     res = db.session.execute("select * from posts join buildings on posts.building = buildings.name")
     posts = res.fetchall()
-    print(posts)
     body=''
     results=[]
     for i in posts:
@@ -177,12 +163,11 @@ def postings_list():
 
 @app.route('/new_posting', methods=['GET', 'POST'])
 def new_posting():
-    global email
-    global password
+    if not session['email']:
+        return redirect(url_for("login"))
     email=get_email()
     print('new_posting')
     print(email)
-    print(password)
     form = NewPost()
     if form.title.data and form.review.data and form.building.data:
         query = "select id from posts order by id desc limit 1"
