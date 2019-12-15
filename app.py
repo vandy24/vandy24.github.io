@@ -103,7 +103,7 @@ def search():
                 results = postings
                 break
             if query in posting[1] or query in posting[2]:
-            results.append(posting)
+                results.append(posting)
         print(results)
         #return render_template("posting_list.html", postings = results)
     return render_template("search.html", form=form)
