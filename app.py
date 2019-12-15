@@ -29,6 +29,8 @@ def set_cookie(email):
 def get_email():
     session = requests.Session()
     cookies=session.cookies.get_dict()
+    print('cookies')
+    print(cookies)
     username = cookies.get('email')
     return username
 
