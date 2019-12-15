@@ -2,7 +2,6 @@
 docstring
 """
 from flask import Flask, render_template, request, g, redirect, url_for, session
-from flask.ext.session import Session
 import flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
@@ -15,14 +14,12 @@ from wtforms import StringField, SubmitField, SelectField, validators, TextAreaF
 from wtforms.validators import Regexp, Required, ValidationError
 
 app = Flask(__name__)
-SESSION_TYPE = 'redis'
 Bootstrap(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 db = SQLAlchemy(app)
 email = None
 password = None
 results = None
-Session(app)
 
 def set_cookie(email):
     session['email'] = email
