@@ -160,15 +160,15 @@ def new_posting():
         ide = posts[0]+1
 
         if form.photo1.data:
-            query = "INSERT INTO posts images ('{}', '{}');".format(form.photo1.data, ide)
+            query = "INSERT INTO images values ('{}', '{}');".format(form.photo1.data, ide)
             db.session.execute(query)
             db.session.commit()
         if form.photo2.data:
-            query = "INSERT INTO posts images ('{}', '{}');".format(form.photo2.data, ide)
+            query = "INSERT INTO images values ('{}', '{}');".format(form.photo2.data, ide)
             db.session.execute(query)
             db.session.commit()
         if form.photo3.data:
-            query = "INSERT INTO posts images ('{}', '{}');".format(form.photo3.data, ide)
+            query = "INSERT INTO images values ('{}', '{}');".format(form.photo3.data, ide)
             db.session.execute(query)
             db.session.commit()
 
