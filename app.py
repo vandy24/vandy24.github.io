@@ -101,10 +101,12 @@ def search():
     login_password = form.password.data
     reg_email = reg.remail.data
     reg_password = reg.rpassword.data
-    if form.validate_on_submit() and login_email and login_password:
+    print(email)
+    print(password)
+    if form.validate_on_submit() and login_email and login_password or email:
         email = form.email.data
         password = form.password.data
-    elif reg.validate_on_submit() and reg_email and reg_password:
+    elif reg.validate_on_submit() and reg_email and reg_password or email:
         email = reg.remail.data
         password = reg.rpassword.data
         res = db.session.execute("select email from users")
