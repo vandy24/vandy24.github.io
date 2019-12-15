@@ -185,7 +185,7 @@ def new_posting():
     form = NewPost()
     if form.title.data and form.review.data and form.building.data:
         query = "select id from posts order by id desc limit 1"
-        posts = db.session.execute(query)
+        res = db.session.execute(query)
         posts = res.fetchall()
         print(posts)
         ide = posts[0]+1
@@ -209,7 +209,6 @@ def new_posting():
         building[0]
         
         query = "INSERT INTO posts VALUES ('{}', '{}', '{}', '{}', '{}', '{}');".format(email, form.title.data, form.review.data, building, ide, ide)
-        res = db.session.execute("select * from posts join buildings on posts.building = buildings.name")
         db.session.execute(query)
         db.session.commit()
         return redirect(url_for("search"))
