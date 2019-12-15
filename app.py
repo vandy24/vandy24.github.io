@@ -112,8 +112,8 @@ def login():
 def search():
     global email
     global password
-    print(global email)
-    print(global password)
+    print(email)
+    print(password)
     form=SearchForm()
     return render_template("search.html", form=form)
 
