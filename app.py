@@ -2,7 +2,6 @@
 docstring
 """
 from flask import Flask, render_template, request, g, redirect, url_for, session
-from flask.session import Session
 from flask.ext.session import Session
 import flask
 from flask_sqlalchemy import SQLAlchemy
