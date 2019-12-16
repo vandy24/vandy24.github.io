@@ -94,9 +94,9 @@ class NewPost(FlaskForm):
                                                  ('Pioneer', 'Pioneer'), ('Bailey', 'Bailey')],  validators =[validators.required()])
     title = StringField("Title", validators =[validators.Length(max=44), validators.required()])
     review = TextAreaField("Review", validators =[validators.required(), validators.Length(max=999)])
-    photo1 = StringField("Link to photo (optional)", validators=[validators.URL(), validators.Length(max=199)])
-    photo2 = StringField("Link to photo (optional)", validators=[validators.URL(), validators.Length(max=199)])
-    photo3 = StringField("Link to photo (optional)", validators=[validators.URL(), validators.Length(max=199)])
+    photo1 = StringField("Link to photo (optional)", validators=[validators.Optional(), validators.URL(), validators.Length(max=199)])
+    photo2 = StringField("Link to photo (optional)", validators=[validators.Optional(), validators.Length(max=199)])
+    photo3 = StringField("Link to photo (optional)", validators=[validators.Optional(), validators.Length(max=199)])
     submit = SubmitField("Post")
 
 class RegisterForm(FlaskForm):
