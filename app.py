@@ -198,7 +198,7 @@ def new_posting():
     print('new_posting')
     print(email)
     form = NewPost()
-    if form.title.data and form.review.data and form.building.data:
+    if form.validate_on_submit() and form.title.data and form.review.data and form.building.data:
         query = "select id from posts order by id desc limit 1"
         res = db.session.execute(query)
         posts = res.fetchall()
