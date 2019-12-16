@@ -82,7 +82,7 @@ def reg_check(form, field):
         raise ValidationError("Registration failed. Username taken or field missing")
     
 class LoginForm(FlaskForm):
-    email = StringField("User Name")
+    email = StringField("Username")
     password = StringField("Password", validators=[login_check, len_check_log])
     submit = SubmitField("Login")
 
@@ -100,7 +100,7 @@ class NewPost(FlaskForm):
     submit = SubmitField("Post")
 
 class RegisterForm(FlaskForm):
-    remail = StringField("User Name", validators=[validators.Length(max=44)])
+    remail = StringField("Username", validators=[validators.Length(max=44)])
     rpassword = StringField("Password", validators=[reg_check])
     rsubmit = SubmitField("Register")
 
@@ -126,12 +126,12 @@ def login():
     print(email)
     if get_email():
         return redirect(url_for("search"))
-    if form.validate_on_submit() and login_email and login_password or email:
+    if form.validate_on_submit():
         email = form.email.data
         set_cookie(email)
         password = form.password.data
         return redirect(url_for("search"))
-    elif reg.validate_on_submit() and reg_email and reg_password or email:
+    elif reg.validate_on_submit():
         email = reg.remail.data
         set_cookie(email)
         password = reg.rpassword.data
