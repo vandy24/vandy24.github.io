@@ -92,15 +92,15 @@ class NewPost(FlaskForm):
                                                  ('Sanford', 'Sanford'), ('Centennial', 'Centennial'),
                                                  ('Comstock', 'Comstock'), ('Middlebrook', 'Middlebrook'),
                                                  ('Pioneer', 'Pioneer'), ('Bailey', 'Bailey')],  validators =[validators.required()])
-    title = StringField("Title", validators =[validators.required(), len_check_tit])
-    review = TextAreaField("Review", validators =[validators.required(), validators.length(max=999)])
-    photo1 = StringField("Link to photo (optional)", validators=[validators.URL(), validators.length(max=199)])
-    photo2 = StringField("Link to photo (optional)", validators=[validators.URL(), validators.length(max=199)])
-    photo3 = StringField("Link to photo (optional)", validators=[validators.URL(), validators.length(max=199)])
+    title = StringField("Title", validators =[validators.Length(max=44), validators.required()])
+    review = TextAreaField("Review", validators =[validators.required(), validators.Length(max=999)])
+    photo1 = StringField("Link to photo (optional)", validators=[validators.URL(), validators.Length(max=199)])
+    photo2 = StringField("Link to photo (optional)", validators=[validators.URL(), validators.Length(max=199)])
+    photo3 = StringField("Link to photo (optional)", validators=[validators.URL(), validators.Length(max=199)])
     submit = SubmitField("Post")
 
 class RegisterForm(FlaskForm):
-    remail = StringField("User Name", validators=[validators.length(max=44)])
+    remail = StringField("User Name", validators=[validators.Length(max=44)])
     rpassword = StringField("Password", validators=[reg_check])
     rsubmit = SubmitField("Register")
 

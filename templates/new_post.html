@@ -5,25 +5,40 @@
 <body>
 	<link rel="stylesheet" type="text/css" href="/static/mashup.css">
 	<br>
+	<br>
 	<h1>UMN Dorm Reviews</h1>
     <a class="nav_buttons" href="/search">New Search</a>
 	<a class="nav_buttons" href="/logout">Log Out</a>
+	<br>
+	<br>
 	<br>
 	<br>
     <form action="/new_posting" method='post'>
         {{ form.hidden_tag() }}
         {{ render_field(form.building) }}
         <br />
+		<br>
+		<br>
 		{{ render_field(form.title) }}
 		<br />
+		<br>
+		<br>
 		{{ render_field(form.review) }}
 		<br />
+		<br>
+		<br>
 		{{ render_field(form.photo1) }}
 		<br />
+		<br>
+		<br>
 		{{ render_field(form.photo2) }}
 		<br />
+		<br>
+		<br>
 		{{ render_field(form.photo3) }}
 		<br />
+		<br>
+		<br>
         {{form.submit()}}
     </form>
 </body>
