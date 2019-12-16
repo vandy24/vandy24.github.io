@@ -101,7 +101,7 @@ class NewPost(FlaskForm):
 
 class RegisterForm(FlaskForm):
     remail = StringField("Username", validators=[validators.Length(max=44)])
-    rpassword = StringField("Password", validators=[reg_check])
+    rpassword = StringField("Password", validators=[reg_check, validators.Length(max=44)])
     rsubmit = SubmitField("Register")
 
 class SearchForm(FlaskForm):
